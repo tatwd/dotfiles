@@ -1,0 +1,10 @@
+BoldAsFont=-1
+FontHeight=11
+Columns=89
+ThemeFile=xterm
+CursorType=block
+Font=Microsoft YaHei Mono
+Locale=
+Charset=
+FontWeight=400
+Rows=25

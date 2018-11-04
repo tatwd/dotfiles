@@ -1,0 +1,23 @@
+"*":
+  core:
+    telemetryConsent: "no"
+  editor:
+    fontFamily: "Menlo, Consolas, DejaVu Sans Mono, 'Microsoft YaHei', monospace"
+    showIndentGuide: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "9ccb9eba-9c14-4d65-9f6b-6d5ad3619a18"
+  "platformio-ide-terminal":
+    core:
+      shell: "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+      shellArguments: "-NoLogo"
+    style:
+      fontFamily: "Consolas, 'Microsoft YaHei', monospace"
+      theme: "one-dark"
+  "spell-check":
+    locales: [
+      "en-US"
+    ]
+    useLocales: false
+  welcome:
+    showOnStartup: false
