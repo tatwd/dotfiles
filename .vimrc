@@ -19,6 +19,23 @@ set nobackup
 set noswapfile
 
 " 设置插件
+" 使用 vim-plug (https://github.com/junegunn/vim-plug) 管理插件
+" 
+" Windows 10 (must set `VIM`):
+"     curl -fLo %VIM%/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" or
+"     md %VIM%\vimfiles\autoload
+"     $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"     (New-Object Net.WebClient).DownloadFile(
+"       $uri,
+"       $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+"         "%VIM%\vimfiles\autoload\plug.vim"
+"       )
+"     )
+"
+" Unix:
+"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
 call plug#begin($VIM . '/vimfiles/plugged')
 
 Plug 'tpope/vim-sensible'
