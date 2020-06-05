@@ -1,0 +1,36 @@
+syntax enable
+
+set noswapfile
+
+set number
+set encoding=utf-8
+
+set tabstop=4
+set shiftwidth=4
+
+filetype indent on
+autocmd FileType c,rust setlocal noexpandtab smarttab shiftwidth=4 softtabstop=4
+autocmd FileType html,javascript,css setlocal expandtab smarttab tabstop=2  shiftwidth=2 softtabstop=2
+
+"set background=dark
+
+"自动补全
+set completeopt+=longest
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+"set hlsearch
+"set ignorecase
+"set smartcase
+
+map Q :q<CR>
+map S :w<CR>
+
+map s<right>  :set splitright<CR>:vsplit<CR>
+map s<left>   :set nosplitright<CR>:vsplit<CR>
+map s<up>     :set nosplitbelow<CR>:split<CR>
+map s<down>   :set splitbelow<CR>:split<CR>
+
+map te        :tabedit<CR>
+map tn        :tabnew 
+map t<right>  :tabnext<CR>
+map t<left>   :tabprevious<CR>
