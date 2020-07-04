@@ -1,1 +1,10 @@
-{  "registry-mirrors": [    "https://registry.docker-cn.com/"  ],  "insecure-registries": [],  "debug": true,  "experimental": false}
+{
+  "registry-mirrors": [
+    "https://registry.docker-cn.com",
+    "https://dockerhub.azk8s.cn",
+    "https://mirror.ccs.tencentyun.com",
+    "https://hub-mirror.c.163.com",
+    "https://reg-mirror.qiniu.com"
+  ]
+}
+
