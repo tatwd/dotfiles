@@ -11,6 +11,8 @@ alias autorm='sudo apt autoremove'
 alias cdblog='cd ~/works/tatwd.github.io'
 alias lsdc='docker container ls'
 alias dps='docker ps'
+alias dob='dotnet build'
+alias dor='dotnet run'
 
 #hexdump view with text
 function hdv {
