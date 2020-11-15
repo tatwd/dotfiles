@@ -7,3 +7,6 @@ vicmd_symbol = "[➜](bold green)"
 
 [package]
 disabled = true
+
+[dotnet]
+symbol = "🤖 "
