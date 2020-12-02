@@ -8,7 +8,7 @@ function open($file) {
 }
 
 function uprofile {
-	& $profile
+  & $profile
 }
 
 function lspath {
