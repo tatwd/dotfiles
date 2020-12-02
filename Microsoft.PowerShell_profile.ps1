@@ -12,20 +12,20 @@ function uprofile {
 }
 
 function lspath {
-	($Env:Path).Split(";")
+  ($Env:Path).Split(";")
 }
 
 function get-process-for-port($port) {
-	Get-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess
+  Get-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess
 }
 
 function goworks {
   #replace yourself
-	set-location 'd:/works'
+  set-location 'd:/works'
 }
 
 function psfd($v) {
-	Get-Process | where {$_.ProcessName -match $v -or $_.Id -match $v}
+  Get-Process | where {$_.ProcessName -match $v -or $_.Id -match $v}
 }
 
 #set-location 'd:/works'
