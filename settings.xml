@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <mirrors>
+        <mirror>
+            <id>alimaven-central</id>
+            <mirrorOf>central</mirrorOf>
+            <name>aliyun central maven</name>
+            <url>https://maven.aliyun.com/repository/central</url>
+        </mirror>
+        <mirror>
+            <id>alimaven-google</id>
+            <mirrorOf>google</mirrorOf>
+            <name>aliyun google maven</name>
+            <url>https://maven.aliyun.com/repository/google</url>
+        </mirror>
+        <mirror>
+            <id>alimaven-spring</id>
+            <mirrorOf>spring</mirrorOf>
+            <name>aliyun spring maven</name>
+            <url>https://maven.aliyun.com/repository/spring</url>
+        </mirror>
+        <mirror>
+            <id>alimaven-spring-plugin</id>
+            <mirrorOf>spring-plugin</mirrorOf>
+            <name>aliyun spring-plugin maven</name>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+        </mirror>
+        <mirror>
+            <id>alimaven-public</id>
+            <mirrorOf>public</mirrorOf>
+            <name>aliyun public maven</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </mirror>
+        <mirror>
+            <id>alimaven-snapshots</id>
+            <mirrorOf>snapshots</mirrorOf>
+            <name>aliyun snapshots maven</name>
+            <url>https://maven.aliyun.com/repository/snapshots</url>
+        </mirror>
+    </mirrors>
+
+</settings>
