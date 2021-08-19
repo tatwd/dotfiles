@@ -1,3 +1,8 @@
+# exec this file by:
+#
+#   bash <(curl -L https://raw.githubusercontent.com/tatwd/dotfiles/master/setup_r2ray.sh)
+#
+
 # $config_dir=/user/local/etc/v2ray
 #echo "Create v2ray config folder"
 #sudo mkdir -p $config_dir
