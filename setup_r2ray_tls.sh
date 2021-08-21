@@ -57,8 +57,8 @@ firewall-cmd --zone=public --add-port=80/tcp --permanent
 systemctl restart firewalld
 
 # config ssl crt
-$myemail="tatwdo@outlook.com"
-$mydomain="zero.tatwd.me"
+myemail="tatwdo@outlook.com"
+mydomain="zero.tatwd.me"
 yum -q -y install openssl crontabs socat curl
 curl https://get.acme.sh | sh -s email=$myemail
 source ~/.bashrc
