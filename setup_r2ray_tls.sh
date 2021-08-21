@@ -62,8 +62,8 @@ mydomain="zero.tatwd.me"
 yum -q -y install openssl crontabs socat curl
 curl https://get.acme.sh | sh -s email=$myemail
 source ~/.bashrc
-acme.sh --issue -d $mydomain --standalone --keylength ec-256 --force &&
-acme.sh --installcert -d $mydomain --ecc \
+~/.acme.sh/acme.sh --issue -d $mydomain --standalone --keylength ec-256 --force &&
+~/.acme.sh/acme.sh --installcert -d $mydomain --ecc \
     --fullchain-file /usr/local/etc/v2ray/v2ray.crt \
     --key-file /usr/local/etc/v2ray/v2ray.key
 
