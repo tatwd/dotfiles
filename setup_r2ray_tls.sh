@@ -7,7 +7,7 @@ ehco "Download v2ray from github and install"
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 
 cat <<EOF > /usr/local/etc/v2ray/config.json
-
+{
 	"log": {
 		"loglevel": "info"
 	},
