@@ -2,8 +2,7 @@
   "registry-mirrors": [
     "https://docker.mirrors.ustc.edu.cn",
     "https://registry.docker-cn.com",
-    "https://dockerhub.azk8s.cn",
-    "https://mirror.ccs.tencentyun.com",
+    "https://mirror.baidubce.com",
     "https://hub-mirror.c.163.com",
     "https://reg-mirror.qiniu.com"
   ]
