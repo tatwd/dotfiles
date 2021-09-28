@@ -20,3 +20,11 @@ alias open='xdg-open'
 function hdv {
   hexdump -e '16/1 "%02X " " | "' -e '16/1 "%_p" "\n"' $1
 }
+
+
+#from https://gitlab.com/islandoftex/images/texlive/-/wikis/Building-LaTeX-documents-locally-using-Docker
+alias tlrun='sudo docker run -i --rm --name latex -v "$PWD":/usr/src/app -w /usr/src/app registry.gitlab.com/islandoftex/images/texlive:latest'
+alias arara='sudo docker run -i --rm --name latex -v "$PWD":/usr/src/app -w /usr/src/app registry.gitlab.com/islandoftex/images/texlive:latest arara'
+alias pdflatex='sudo docker run -i --rm --name latex -v "$PWD":/usr/src/app -w /usr/src/app registry.gitlab.com/islandoftex/images/texlive:latest pdflatex'
+
+
