@@ -8,7 +8,7 @@ mydomain="zero.tatwd.me"
 v2ray_crt="/usr/local/etc/v2ray/v2ray.crt"
 v2ray_key="/usr/local/etc/v2ray/v2ray.key"
 v2ray_cfg="/usr/local/etc/v2ray/config.json"
-v2ray_srv="etc/systemd/system/v2ray.service"
+v2ray_srv="/etc/systemd/system/v2ray.service"
 
 client_id=$(uuidgen)
 echo "Create a client id: $client_id"
