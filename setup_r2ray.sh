@@ -7,6 +7,9 @@
 #echo "Create v2ray config folder"
 #sudo mkdir -p $config_dir
 
+client_id=$(uuidgen)
+echo "Create a client id: $client_id"
+
 ehco "Download v2ray from github and install"
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 
@@ -21,7 +24,7 @@ cat <<EOF > /usr/local/etc/v2ray/config.json
             "settings": {
                 "clients": [
                     {
-                        "id": "f81913a5-ba26-4042-9822-77e9d2bfabbf"
+                        "id": "$client_id"
                     }
                 ]
             }
