@@ -1,6 +1,6 @@
 # exec this file by:
 #
-#   bash <(curl -L https://raw.githubusercontent.com/tatwd/dotfiles/master/setup_r2ray_tls.sh)
+#   bash <(curl -L https://raw.githubusercontent.com/tatwd/dotfiles/master/setup_v2ray_tls.sh)
 #
 myemail="tatwdo@outlook.com"
 mydomain="zero.tatwd.me"
@@ -11,8 +11,6 @@ v2ray_cfg="/usr/local/etc/v2ray/config.json"
 v2ray_srv="/etc/systemd/system/v2ray.service"
 
 client_id=$(uuidgen)
-echo "Create a client id: $client_id"
-
 
 ehco "Download v2ray from github and install"
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
@@ -83,4 +81,7 @@ systemctl enable v2ray
 systemctl start v2ray
 
 
+echo "===="
+echo "client id: $client_id"
+echo "===="
 

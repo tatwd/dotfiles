@@ -1,6 +1,6 @@
 # exec this file by:
 #
-#   bash <(curl -L https://raw.githubusercontent.com/tatwd/dotfiles/master/setup_r2ray.sh)
+#   bash <(curl -L https://raw.githubusercontent.com/tatwd/dotfiles/master/setup_v2ray.sh)
 #
 
 # $config_dir=/user/local/etc/v2ray
@@ -8,7 +8,6 @@
 #sudo mkdir -p $config_dir
 
 client_id=$(uuidgen)
-echo "Create a client id: $client_id"
 
 ehco "Download v2ray from github and install"
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
@@ -42,3 +41,8 @@ sudo systemctl start v2ray
 
 sudo firewall-cmd --zone=public --add-port=10086/tcp --permanent
 sudo systemctl restart firewalld
+
+
+echo "===="
+echo "client id: $client_id"
+echo "===="
