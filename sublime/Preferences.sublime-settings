@@ -1,0 +1,11 @@
+{
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme-Palenight.tmTheme",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"tab_size": 4,
+	"theme": "Material-Theme-Palenight.sublime-theme",
+	"word_wrap": "false",
+}
