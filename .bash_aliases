@@ -15,6 +15,7 @@ alias dps='docker ps'
 alias dob='dotnet build'
 alias dor='dotnet run'
 alias open='xdg-open'
+alias scap='ffmpeg -f x11grab -framerate 25 -video_size 1366*768 -i :0.0 -f alsa -ac 2 -i default'
 
 #hexdump view with text
 function hdv {
