@@ -33,6 +33,11 @@ function psfd($v) {
 #try { $null = gcm pshazz -ea stop; pshazz init } catch { }
 #Import-Module posh-git
 #Import-Module oh-my-posh
+
+#$env:RUSTUP_DIST_SERVER="https://mirrors.tuna.tsinghua.edu.cn/rustup"
+$env:RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+
+
 #Set-Theme Sorin
 #Set-Prompt
 #Set-Theme Agnoster
