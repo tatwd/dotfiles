@@ -28,4 +28,11 @@ alias tlrun='sudo docker run -i --rm --name latex -v "$PWD":/usr/src/app -w /usr
 alias arara='sudo docker run -i --rm --name latex -v "$PWD":/usr/src/app -w /usr/src/app registry.gitlab.com/islandoftex/images/texlive:latest arara'
 alias pdflatex='sudo docker run -i --rm --name latex -v "$PWD":/usr/src/app -w /usr/src/app registry.gitlab.com/islandoftex/images/texlive:latest pdflatex'
 
-
+myhttp_proxy="http://127.0.0.1:7890"
+alias gph='git config --global http.proxy $myhttp_proxy'
+alias nogph='git config --global --unset http.proxy'
+alias gphs='git config --global https.proxy $myhttp_proxy'
+alias nogphs='git config --global --unset https.proxy'
+alias nph='npm config set proxy $myhttp_proxy'
+alias nonph='npm config delete proxy'
+#unset myhttp_proxy
