@@ -67,8 +67,8 @@ $apps = @(
 
     # "tortoisesvn", #extras
     # "rider", #jetbrains
-    "docker", #main
-    # "podman", #main
+    # "docker", #main
+    "podman", #main
 
     "dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
