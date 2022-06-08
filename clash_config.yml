@@ -18,9 +18,9 @@ mode: rule
 proxies:
   - name: "vmess"
     type: vmess
-    server: 66.42.100.200
-    port: 10086
-    uuid: f81913a5-ba26-4042-9822-77e9d2bfabbf
+    server: YOUR_PROXY_IP
+    port: YOUR_PROXY_PORT
+    uuid: GENERATE_BY_YOURSEFT # format exmaple: f81913a5-ba26-4042-9822-77e9d2bfabbf
     alterId: 0
     cipher: auto
 
