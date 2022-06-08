@@ -140,7 +140,7 @@ foreach ($item in $config_files) {
 }
 
 
-# Install vs2022
+# Download & Install vs2022
 $vsVersion = "VS2022"
 $sku = "community"
 $downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
