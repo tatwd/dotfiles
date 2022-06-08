@@ -57,8 +57,8 @@ $apps = @(
     # "pshazz", # main
     "git", # main
     # "notepadplusplus", #extras
-    # "vscode", # extras
-    # "windows-terminal", # extras
+    "vscode", # extras
+    "windows-terminal", # extras
     "powertoys", #extras
     # "googlechrome", # extras
     "chromium", # extras
@@ -67,14 +67,14 @@ $apps = @(
 
     # "tortoisesvn", #extras
     # "rider", #jetbrains
-    # "docker", #main
+    "docker", #main
     # "podman", #main
 
-    # "dotnet-sdk", # main
+    "dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
     # "dotnet2-sdk", # versions
     # "dotnet3-sdk", # versions
-    # "nodejs-lts", # main
+    "nodejs-lts", # main
     # "rustup", #main
     # "go", #main
 
