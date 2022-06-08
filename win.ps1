@@ -144,4 +144,7 @@ foreach ($item in $config_files) {
 $vsVersion = "VS2022"
 $sku = "community"
 $downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
-download -url $downloadVSLink -dist "$env:USERPROFILE/Downloads/vsSetup.exe"
+$outSetupExe = "$env:USERPROFILE/Downloads/vsSetup.exe"
+download -url $downloadVSLink -dist $outSetupExe 
+# 立即执行安装 or not
+Invoke-Item $outSetupExe 
