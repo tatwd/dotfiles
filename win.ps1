@@ -62,7 +62,8 @@ $apps = @(
     # "firefox-developer", # versions
 
     # "tortoisesvn", #extras
-    # "rider", #jetbrains
+    "rider", #extras
+    # "datagrip", #extras
     # "docker", #main
     "podman", #main
 
