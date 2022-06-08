@@ -128,7 +128,7 @@ $config_files = [System.Collections.ArrayList]@(
 # }
 
 if ($apps.Contains("docker")) {
-    $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="~/.docker/daemon.toml"})
+    $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="$env:USERPROFILE/.docker/daemon.toml"})
 }
 
 foreach ($item in $config_files) {
