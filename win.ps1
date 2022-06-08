@@ -76,6 +76,8 @@ $apps = @(
 
     ,"FiraCode" #nerd-fonts
     ,"FiraCode-NF" #nerd-fonts
+
+    #,"vlc" #extras
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
