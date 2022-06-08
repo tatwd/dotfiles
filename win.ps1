@@ -22,10 +22,6 @@ scoop update
 # scoop checkup
 # scoop cleanup # clean old version apps
 
-# scoop install 7zip
-# scoop install innounp
-# scoop install wixtoolset
-
 # scoop install aria2
 # aria2 在 Scoop 中默认开启
 # scoop config aria2-enabled true
