@@ -78,6 +78,7 @@ $apps = @(
     ,"FiraCode-NF" #nerd-fonts
 
     #,"vlc" #extras
+    #,"dbeaver" #extras
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
