@@ -84,7 +84,8 @@ $apps | ForEach-Object {
     scoop install $_
 }
 
-
+#switch version of your app
+#scoop reset version_you_selected
 
 function download {
     param(
