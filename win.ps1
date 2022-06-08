@@ -33,6 +33,7 @@ scoop update
 
 # add buckets
 @(
+    "main",
     "extras",
     "nerd-fonts",
     "versions"
