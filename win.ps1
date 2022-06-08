@@ -1,5 +1,5 @@
 # Install scoop
-# Change scoop home path: 
+# scoop 默认安装到用户目录 ~/scoop  可以通过下面方式修改到指定路径: 
 #   $env:SCOOP='Your_Scoop_Path'
 #   [Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
 # Handle https connot connect error:
