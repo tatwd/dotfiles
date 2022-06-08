@@ -120,7 +120,7 @@ $config_files = [System.Collections.ArrayList]@(
     # set powershell profile
     @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"},
     # set starship config
-    @{url="$my_dotfiles_prefix/starship.toml"; dist="~/.config/starship.toml"}
+    @{url="$my_dotfiles_prefix/starship.toml"; dist="$env:USERPROFILE/.config/starship.toml"}
 )
 
 # if ($apps.Contains("rustup")) {
@@ -139,3 +139,9 @@ foreach ($item in $config_files) {
     download -url $url -dist $dist
 }
 
+
+# Install vs2022
+$vsVersion = "VS2022"
+$sku = "community"
+$downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
+download -url $downloadVSLink -dist "$env:USERPROFILE/Downloads/vsSetup.exe"
