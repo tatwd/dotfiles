@@ -74,7 +74,7 @@ $apps = @(
     # "rustup", #main
     # "go", #main
 
-    ,"FiraCode" #nerd-fonts
+    #,"FiraCode" #nerd-fonts
     ,"FiraCode-NF" #nerd-fonts
 
     #,"vlc" #extras
