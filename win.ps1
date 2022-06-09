@@ -54,6 +54,9 @@ $apps = @(
     # "pshazz", # main
     "git", # main
     # "notepadplusplus", #extras
+    # "typora", #extras
+    # "marktext", #extras
+    # "pandoc", #main
     "vscode", # extras
     "windows-terminal", # extras
     "powertoys", #extras
