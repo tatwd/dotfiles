@@ -42,6 +42,9 @@ scoop update
     scoop bucket add $_
 }
 
+# 添加中国常用软件 bucket
+scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
+
 # scoop bucket list
 
 # to install app list
@@ -79,11 +82,16 @@ $apps = @(
     # "rustup", #main
     # "go", #main
 
-    #,"FiraCode" #nerd-fonts
+    # ,"FiraCode" #nerd-fonts
     ,"FiraCode-NF" #nerd-fonts
 
-    #,"vlc" #extras
-    #,"dbeaver" #extras
+    # ,"vlc" #extras
+    # ,"dbeaver" #extras
+
+    # ,"wps" #scoopcn
+    # ,"wxwork" #scoopcn
+    # ,"wechat" #scoopcn
+
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
