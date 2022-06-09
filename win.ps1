@@ -132,15 +132,15 @@ $config_files = [System.Collections.ArrayList]@(
     # set powershell profile
     @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"},
     # set starship config
-    @{url="$my_dotfiles_prefix/starship.toml"; dist="$env:USERPROFILE/.config/starship.toml"}
+    @{url="$my_dotfiles_prefix/starship.toml"; dist="$HOME/.config/starship.toml"}
 )
 
 # if ($apps.Contains("rustup")) {
-#     $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="~/.cargo/config"})
+#     $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
 # }
 
 if ($apps.Contains("docker")) {
-    $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="$env:USERPROFILE/.docker/daemon.toml"})
+    $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="$HOME/.docker/daemon.toml"})
 }
 
 foreach ($item in $config_files) {
@@ -156,7 +156,7 @@ foreach ($item in $config_files) {
 $vsVersion = "VS2022"
 $sku = "community"
 $downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
-$outSetupExe = "$env:USERPROFILE/Downloads/vsSetup.exe"
+$outSetupExe = "$HOME/Downloads/vsSetup.exe"
 download -url $downloadVSLink -dist $outSetupExe 
 # 立即执行安装 or not
 Invoke-Item $outSetupExe 
