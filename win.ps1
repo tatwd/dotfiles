@@ -42,7 +42,7 @@ scoop update
     scoop bucket add $_
 }
 
-# 添加中国常用软件 bucket
+# 添加中国常用软件 bucket or not
 scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
 
 # scoop bucket list
