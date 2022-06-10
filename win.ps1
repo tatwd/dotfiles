@@ -1,7 +1,12 @@
 # Install scoop
 # scoop 默认安装到用户目录 ~/scoop  可以通过下面方式修改到指定路径: 
+# for current user:
 #   $env:SCOOP='Your_Scoop_Path'
 #   [Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+# for global user:
+#   $env:SCOOP_GLOBAL='F:\GlobalScoopApps'
+#   [environment]::setEnvironmentVariable('SCOOP_GLOBAL',$env:SCOOP_GLOBAL,'Machine')
+#
 # Handle https connot connect error:
 #   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 # Open a PowerShell terminal (version 5.1 or later) and run:
@@ -43,6 +48,7 @@ scoop update
 }
 
 # 添加中国常用软件 bucket or not
+# 更多 bucket 源可自行查找 https://scoop.sh/#/buckets
 scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
 
 # scoop bucket list
