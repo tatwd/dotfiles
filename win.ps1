@@ -1,9 +1,9 @@
 # Install scoop
-# scoop 默认安装到用户目录 ~/scoop  可以通过下面方式修改到指定路径: 
-# for current user:
+# 可以通过下面方式修改到指定安装路径: 
+# for current user (default: ~/scoop):
 #   $env:SCOOP='Your_Scoop_Path'
 #   [Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
-# for global user:
+# for global user (default: C:\ProgramData\scoop):
 #   $env:SCOOP_GLOBAL='F:\GlobalScoopApps'
 #   [environment]::setEnvironmentVariable('SCOOP_GLOBAL',$env:SCOOP_GLOBAL,'Machine')
 #
