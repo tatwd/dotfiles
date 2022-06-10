@@ -171,10 +171,10 @@ download -url $downloadVSLink -dist $vsSetupExe
 
 # 下载 SQL Server Management Studio (SSMS)
 # https://docs.microsoft.com/zh-cn/sql/ssms/download-sql-server-management-studio-ssms
-$ssmsLanguageCode = "0x804" #简体中文版
-$ssmsDownloadLink = "https://aka.ms/ssmsfullsetup?clcid=$ssmsLanguageCode"
-$ssmsSetupExe = "$downloadDir/ssmsfullsetup.exe"
-download -url $ssmsDownloadLink -dist $ssmsSetupExe
+# $ssmsLanguageCode = "0x804" #简体中文版
+# $ssmsDownloadLink = "https://aka.ms/ssmsfullsetup?clcid=$ssmsLanguageCode"
+# $ssmsSetupExe = "$downloadDir/ssmsfullsetup.exe"
+# download -url $ssmsDownloadLink -dist $ssmsSetupExe
 
 # 打开下载目录
 Invoke-Item $downloadDir 
