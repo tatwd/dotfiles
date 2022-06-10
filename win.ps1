@@ -157,12 +157,23 @@ foreach ($item in $config_files) {
     download -url $url -dist $dist
 }
 
+# 下载目录
+$downloadDir = "$HOME/Downloads"
 
 # Download & Install vs2022
 $vsVersion = "VS2022"
 $sku = "community"
 $downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
-$outSetupExe = "$HOME/Downloads/vsSetup.exe"
-download -url $downloadVSLink -dist $outSetupExe 
+$vsSetupExe = "$downloadDir/vsSetup.exe"
+download -url $downloadVSLink -dist $vsSetupExe 
 # 立即执行安装 or not
-Invoke-Item $outSetupExe 
+# Invoke-Item $outSetupExe 
+
+# 下载 SQL Server Management Studio (SSMS)
+$ssmsLanguageCode = "0x804" #简体中文版
+$ssmsDownloadLink = "https://aka.ms/ssmsfullsetup?clcid=$ssmsLanguageCode"
+$ssmsSetupExe = "$downloadDir/ssmsfullsetup.exe"
+download -url $ssmsDownloadLink -dist $ssmsSetupExe
+
+# 打开下载目录
+Invoke-Item $downloadDir 
