@@ -104,7 +104,8 @@ $apps = @(
     #,"putty" #extras
     #,"spacesniffer" #extras
     #,"dismplusplus" #extras
-    #,"draw.io"
+    #,"draw.io" #extras
+    #,"postman" #extras
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
