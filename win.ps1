@@ -102,7 +102,7 @@ $apps = @(
     ,"sumatrapdf" #extras
     #,"mobaxterm" #extras
     #,"putty" #extras
-
+    #,"spacesniffer" #extras
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
