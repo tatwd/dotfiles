@@ -87,6 +87,7 @@ $apps = @(
     "nodejs-lts", # main
     # "rustup", #main
     # "go", #main
+    # ,"python" #main
 
     # ,"FiraCode" #nerd-fonts
     ,"FiraCode-NF" #nerd-fonts
