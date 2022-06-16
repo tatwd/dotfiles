@@ -74,6 +74,7 @@ $apps = @(
     "firefox" # extras
     # "firefox-developer", # versions
     ,"ntop" #main likt `htop`
+    #,"ctop" #main top-like container metrics
 
     # "tortoisesvn", #extras
     "rider", #extras
