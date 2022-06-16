@@ -91,8 +91,8 @@ $apps = @(
     # "go", #main
     # ,"python" #main
 
-    # ,"FiraCode" #nerd-fonts
-    ,"FiraCode-NF" #nerd-fonts
+    ,"FiraCode" #nerd-fonts
+    #,"FiraCode-NF" #nerd-fonts
 
     # ,"vlc" #extras
     # ,"dbeaver" #extras
