@@ -100,7 +100,8 @@ $apps = @(
     # ,"wechat" #scoopcn
 
     ,"sumatrapdf" #extras
-    ,"mobaxterm" #extras
+    #,"mobaxterm" #extras
+    #,"putty" #extras
 
 )
 # Write-Output $apps.length
