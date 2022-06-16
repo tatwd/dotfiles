@@ -98,6 +98,8 @@ $apps = @(
     # ,"wxwork" #scoopcn
     # ,"wechat" #scoopcn
 
+    ,"sumatrapdf" #extras
+
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
