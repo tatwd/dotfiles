@@ -49,7 +49,7 @@ scoop update
 
 # 添加中国常用软件 bucket or not
 # 更多 bucket 源可自行查找 https://scoop.sh/#/buckets
-scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
+# scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
 
 # scoop bucket list
 
@@ -97,6 +97,7 @@ $apps = @(
     # ,"vlc" #extras
     # ,"dbeaver" #extras
 
+    # ,"wpsoffice" #extras
     # ,"wps" #scoopcn
     # ,"wxwork" #scoopcn
     # ,"wechat" #scoopcn
