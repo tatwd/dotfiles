@@ -41,8 +41,8 @@ scoop update
     "main",
     "extras",
     "nerd-fonts",
-    "versions"
-    # "jetbrains",
+    "versions",
+    "nirsoft"
 ) | ForEach-Object {
     scoop bucket add $_
 }
@@ -73,6 +73,7 @@ $apps = @(
     "chromium", # extras
     "firefox" # extras
     # "firefox-developer", # versions
+    ,"ntop" #main likt `htop`
 
     # "tortoisesvn", #extras
     "rider", #extras
@@ -106,6 +107,9 @@ $apps = @(
     #,"dismplusplus" #extras
     #,"draw.io" #extras
     #,"postman" #extras
+
+    #,"CurrPorts" #nirsoft
+    #,"SmartSniff" #nirsoft
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
