@@ -63,6 +63,7 @@ $apps = @(
     # "pshazz", # main
     "git", # main
     ,"vim" #main
+    # ,"openssh" #main
     # "notepadplusplus", #extras
     # "typora", #extras
     # "marktext", #extras
@@ -81,7 +82,7 @@ $apps = @(
     "rider", #extras
     # "datagrip", #extras
     # "docker", #main
-    "podman", #main
+    # "podman", #main
 
     "dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
