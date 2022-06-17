@@ -42,7 +42,8 @@ scoop update
     "extras",
     "nerd-fonts",
     "versions",
-    "nirsoft"
+    "nirsoft",
+    "nonportable"
 ) | ForEach-Object {
     scoop bucket add $_
 }
@@ -117,6 +118,7 @@ $apps = @(
     #,"openwithplusplus" #extras
 
     #,"thunderbird" #extras email client
+    #,"sql-server-management-studio-np" #nonportable
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
