@@ -59,11 +59,11 @@ scoop update
 $apps = @(
     "7zip", # main
     "sudo", # main
-    # "starship", # main
+    "starship", # main
     # "figlet", # main
     # "pshazz", # main
     "git", # main
-    ,"vim" #main
+    # ,"vim" #main
     # ,"openssh" #main
     # "notepadplusplus", #extras
     # "typora", #extras
@@ -158,9 +158,12 @@ $my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
 $config_files = [System.Collections.ArrayList]@(
     # set powershell profile
     @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"},
-    # set starship config
-    @{url="$my_dotfiles_prefix/starship.toml"; dist="$HOME/.config/starship.toml"}
 )
+
+# set starship config
+if ($app.Contains("starship")) {
+    $config_files.Add(@{url="$my_dotfiles_prefix/starship.toml"; dist="$HOME/.config/starship.toml"})
+}
 
 # if ($apps.Contains("rustup")) {
 #     $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
