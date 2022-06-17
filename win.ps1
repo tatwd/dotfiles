@@ -97,7 +97,7 @@ $apps = @(
     # ,"vlc" #extras
     # ,"dbeaver" #extras
 
-    # ,"wpsoffice" #extras
+    # ,"wpsoffice" #extras english version
     # ,"wps" #scoopcn
     # ,"wxwork" #scoopcn
     # ,"wechat" #scoopcn
@@ -110,8 +110,9 @@ $apps = @(
     #,"draw.io" #extras
     #,"postman" #extras
 
-    #,"CurrPorts" #nirsoft
+    ,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
+    #,"openwithplusplus" #extras
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
