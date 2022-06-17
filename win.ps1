@@ -115,6 +115,8 @@ $apps = @(
     ,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
     #,"openwithplusplus" #extras
+
+    #,"thunderbird" #extras email client
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
