@@ -62,6 +62,7 @@ $apps = @(
     # "figlet", # main
     # "pshazz", # main
     "git", # main
+    ,"vim" #main
     # "notepadplusplus", #extras
     # "typora", #extras
     # "marktext", #extras
