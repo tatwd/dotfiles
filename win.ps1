@@ -119,6 +119,7 @@ $apps = @(
 
     #,"thunderbird" #extras email client
     #,"sql-server-management-studio-np" #nonportable
+    #,"tectonic" #main texlive wrapper
 )
 # Write-Output $apps.length
 $apps | ForEach-Object {
