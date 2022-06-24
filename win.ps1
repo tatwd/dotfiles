@@ -59,7 +59,7 @@ scoop update
 $apps = @(
     "7zip", # main
     "sudo", # main
-    ,"pwsh" #main it's coress-platform instead of windows powershell
+    #,"pwsh" #main it's coress-platform instead of windows powershell
     ,"scoop-completion" #extras autocomplete in powershell, enable in $PROFILE
     "starship", # main
     # "figlet", # main
