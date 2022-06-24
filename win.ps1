@@ -59,13 +59,14 @@ scoop update
 $apps = @(
     "7zip", # main
     "sudo", # main
+    ,"scoop-completion" #extras autocomplete in powershell, enable in $PROFILE
     "starship", # main
     # "figlet", # main
     # "pshazz", # main
     "git", # main
     # ,"vim" #main
     # ,"openssh" #main
-    # "notepadplusplus", #extras
+    "notepadplusplus", #extras
     # "typora", #extras
     # "marktext", #extras
     # "pandoc", #main
@@ -115,7 +116,7 @@ $apps = @(
 
     ,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
-    #,"openwithplusplus" #extras
+    ,"openwithplusplus" #extras
 
     #,"thunderbird" #extras email client
     #,"sql-server-management-studio-np" #nonportable
