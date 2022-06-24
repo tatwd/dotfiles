@@ -77,7 +77,7 @@ $apps = @(
     "chromium", # extras
     "firefox" # extras
     # "firefox-developer", # versions
-    ,"ntop" #main likt `htop`
+    #,"ntop" #main likt `htop`
     #,"ctop" #main top-like container metrics
 
     # "tortoisesvn", #extras
