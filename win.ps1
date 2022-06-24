@@ -101,7 +101,7 @@ $apps = @(
     # ,"vlc" #extras
     # ,"dbeaver" #extras
 
-    # ,"wpsoffice" #extras english version
+    ,"wpsoffice" #extras english version
     # ,"wps" #scoopcn
     # ,"wxwork" #scoopcn
     # ,"wechat" #scoopcn
