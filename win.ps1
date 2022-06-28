@@ -156,7 +156,9 @@ function download {
 }
 
 # my dotfiles repository raw url prefix
+# $my_dotfiles_prefix = "https://cdn.jsdelivr.net/gh/tatwd/dotfiles@master"
 $my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
+
 
 $config_files = [System.Collections.ArrayList]@(
     # set powershell profile
