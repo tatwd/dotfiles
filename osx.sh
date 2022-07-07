@@ -34,3 +34,5 @@ apps=(
 # Default is: /Users/$user/Applications
 # echo "installing apps..."
 # brew cask install --appdir="/Applications" ${apps[@]}
+
+# vs for mac => https://aka.ms/vs/mac/download
