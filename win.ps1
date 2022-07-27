@@ -1,5 +1,5 @@
 # Install scoop
-# 可以通过下面方式修改到指定安装路径: 
+# 可以通过下面方式修改到指定安装路径
 # for current user (default: ~/scoop):
 #   $env:SCOOP='Your_Scoop_Path'
 #   [Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
@@ -23,14 +23,15 @@
 # scoop config proxy default # system proxy settings
 # scoop config rm proxy
 
+scoop install 7zip git
 scoop update
 # scoop checkup
 # scoop cleanup # clean old version apps
 
 # scoop install aria2
-# aria2 在 Scoop 中默认开启
+# aria2 Scoop 中默认开起
 # scoop config aria2-enabled true
-# # 关于以下参数的作用，详见aria2的相关资料
+# # 关于以下参数的作用，详见 aria2 的相关资料
 # scoop config aria2-retry-wait 4
 # scoop config aria2-split 16
 # scoop config aria2-max-connection-per-server 16
@@ -51,20 +52,21 @@ scoop update
 # 添加中国常用软件 bucket or not
 # 更多 bucket 源可自行查找 https://scoop.sh/#/buckets
 # scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
+# scoop bucket add scoop https://github.com/dodorz/scoop
 
 # scoop bucket list
 
 # to install app list
 # can search in https://scoop.sh/#/apps
 $apps = @(
-    "7zip", # main
+    # "7zip", # main
     "sudo", # main
     #,"pwsh" #main it's coress-platform instead of windows powershell
     ,"scoop-completion" #extras autocomplete in powershell, enable in $PROFILE
     "starship", # main
     # "figlet", # main
     # "pshazz", # main
-    "git", # main
+    # "git", # main
     # ,"vim" #main
     # ,"openssh" #main
     "notepadplusplus", #extras
@@ -72,11 +74,11 @@ $apps = @(
     # "marktext", #extras
     # "pandoc", #main
     "vscode", # extras
-    "windows-terminal", # extras
+    #"windows-terminal", # extras
     "powertoys", #extras
     # "googlechrome", # extras
     "chromium", # extras
-    "firefox" # extras
+    #"firefox" # extras
     # "firefox-developer", # versions
     #,"ntop" #main likt `htop`
     #,"ctop" #main top-like container metrics
@@ -87,11 +89,11 @@ $apps = @(
     # "docker", #main
     # "podman", #main
 
-    "dotnet-sdk", # main
+    #"dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
     # "dotnet2-sdk", # versions
     # "dotnet3-sdk", # versions
-    "nodejs-lts", # main
+    #"nodejs-lts", # main
     # "rustup", #main
     # "go", #main
     # ,"python" #main
@@ -102,7 +104,7 @@ $apps = @(
     # ,"vlc" #extras
     # ,"dbeaver" #extras
 
-    ,"wpsoffice" #extras english version
+    #,"wpsoffice" #extras english version
     # ,"wps" #scoopcn
     # ,"wxwork" #scoopcn
     # ,"wechat" #scoopcn
@@ -112,7 +114,7 @@ $apps = @(
     #,"putty" #extras
     #,"spacesniffer" #extras
     #,"dismplusplus" #extras
-    #,"draw.io" #extras
+    # ,"draw.io" #extras
     #,"postman" #extras
 
     ,"CurrPorts" #nirsoft
@@ -120,7 +122,7 @@ $apps = @(
     ,"openwithplusplus" #extras
 
     #,"thunderbird" #extras email client
-    #,"sql-server-management-studio-np" #nonportable
+    ,"sql-server-management-studio-np" #nonportable
     #,"tectonic" #main texlive wrapper
 )
 # Write-Output $apps.length
@@ -162,11 +164,11 @@ $my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
 
 $config_files = [System.Collections.ArrayList]@(
     # set powershell profile
-    @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"},
+    @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"}
 )
 
 # set starship config
-if ($app.Contains("starship")) {
+if ($apps.Contains("starship")) {
     $config_files.Add(@{url="$my_dotfiles_prefix/starship.toml"; dist="$HOME/.config/starship.toml"})
 }
 
