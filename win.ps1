@@ -89,7 +89,7 @@ $apps = @(
     # "docker", #main
     # "podman", #main
 
-    #"dotnet-sdk", # main
+    "dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
     # "dotnet2-sdk", # versions
     # "dotnet3-sdk", # versions
