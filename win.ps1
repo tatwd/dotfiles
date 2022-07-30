@@ -172,11 +172,9 @@ if ($apps.Contains("starship")) {
     $config_files.Add(@{url="$my_dotfiles_prefix/starship.toml"; dist="$HOME/.config/starship.toml"})
 }
 
-# if ($apps.Contains("rustup")) {
-#     $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
-#     $env:RUSTUP_DIST_SERVER='https://mirrors.tuna.tsinghua.edu.cn/rustup'
-#     [Environment]::SetEnvironmentVariable('RUSTUP_DIST_SERVER', $env:RUSTUP_DIST_SERVER, 'User')
-# }
+if ($apps.Contains("rustup")) {
+    $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
+}
 
 if ($apps.Contains("docker")) {
     $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="$HOME/.docker/daemon.toml"})
