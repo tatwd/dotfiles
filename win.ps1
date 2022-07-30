@@ -186,6 +186,10 @@ if ($apps.Contains("docker")) {
     $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="$HOME/.docker/daemon.toml"})
 }
 
+if ($apps.Contains("python")) {
+    $config_files.Add(@{url="$my_dotfiles_prefix/pip.conf"; dist="$HOME/pip/pip.ini"})
+}
+
 foreach ($item in $config_files) {
     $url = $item.url
     $dist = $item.dist
