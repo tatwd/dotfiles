@@ -2,13 +2,20 @@ set-alias unzip Expand-Archive
 set-alias zip Compress-Archive
 set-alias trash Remove-ItemSafely
 set-alias which Get-Command
+set-alias open Invoke-Item
+
+function cd.. { cd .. }
+set-alias .. cd..
+
+function cd... { cd ../../ }
+set-alias ... cd...
+
+function openhosts {
+  notepad "C:\Windows\System32\drivers\etc\hosts"
+}
 
 function Test-Command($cmdname) {
   return [bool](Get-Command -Name $cmdname -ErrorAction SilentlyContinue)
-}
-
-function open($file) {
-  invoke-item $file
 }
 
 function uprofile {
