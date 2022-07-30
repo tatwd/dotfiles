@@ -125,6 +125,11 @@ $apps = @(
     ,"sql-server-management-studio-np" #nonportable
     #,"tectonic" #main texlive wrapper
 )
+
+if ($apps.Contains("rustup")) {
+    $env:RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+}
+
 # Write-Output $apps.length
 $apps | ForEach-Object {
     scoop install $_
@@ -174,8 +179,7 @@ if ($apps.Contains("starship")) {
 
 if ($apps.Contains("rustup")) {
     # $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
-    $cargo_dir = $($(Get-Item $(Get-Command cargo).Path).Directory.Parent.FullName)
-    $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$cargo_dir/config"})
+    $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$env:SCOOP/persist/rustup/.cargo/config"})
 }
 
 if ($apps.Contains("docker")) {
