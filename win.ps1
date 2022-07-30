@@ -173,7 +173,9 @@ if ($apps.Contains("starship")) {
 }
 
 if ($apps.Contains("rustup")) {
-    $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
+    # $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
+    $cargo_dir = $($(Get-Item $(Get-Command cargo).Path).Directory.Parent.FullName)
+    $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$cargo_dir/config"})
 }
 
 if ($apps.Contains("docker")) {
