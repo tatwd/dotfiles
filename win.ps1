@@ -204,10 +204,14 @@ $profile_dir = [System.IO.Path]::GetDirectoryName($PROFILE)
 $user_doc_dir = [System.IO.Path]::GetDirectoryName($profile_dir)
 
 if ($is_pwsh) {
-    New-Item -ItemType Junction -Path "$profile_dir" -Target "$user_doc_dir/WindowsPowerShell"
+    New-Item -ItemType Junction -Path "$user_doc_dir/WindowsPowerShell" -Target "$profile_dir"
 } else {
-    New-Item -ItemType Junction -Path "$profile_dir" -Target "$user_doc_dir/PowerShell"
+    New-Item -ItemType Junction -Path "$user_doc_dir/PowerShell" -Target "$profile_dir" 
 }
+
+# vscode powershell extension profile
+sudo New-Item -ItemType SymbolicLink -Path "$profile_dir/Microsoft.VSCode_profile.ps1" -Target "$PROFILE"
+
 
 # 下载目录
 $downloadDir = "$HOME/Downloads"
