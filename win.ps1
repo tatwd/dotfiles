@@ -198,6 +198,17 @@ foreach ($item in $config_files) {
     download -url $url -dist $dist
 }
 
+
+$is_pwsh = $PSEdition -eq "Core"
+$profile_dir = [System.IO.Path]::GetDirectoryName($PROFILE)
+$user_doc_dir = [System.IO.Path]::GetDirectoryName($profile_dir)
+
+if ($is_pwsh) {
+    New-Item -ItemType Junction -Path "$profile_dir" -Target "$user_doc_dir/WindowsPowerShell"
+} else {
+    New-Item -ItemType Junction -Path "$profile_dir" -Target "$user_doc_dir/PowerShell"
+}
+
 # 下载目录
 $downloadDir = "$HOME/Downloads"
 
