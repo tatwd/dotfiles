@@ -40,17 +40,25 @@ function psfd($v) {
 }
 
 function setproxy {
+  $env:http_proxy="http://127.0.0.1:7890";
+  $env:https_proxy="http://127.0.0.1:7890"
+  Write-Output "set env http_proxy,https_proxy done!"
+
   #git
-  git config --global http.proxy "http://127.0.0.1:7890"
-  git config --global https.proxy "http://127.0.0.1:7890"
-  echo "set git proxy ok"
+  # git config --global http.proxy "http://127.0.0.1:7890"
+  # git config --global https.proxy "http://127.0.0.1:7890"
+  # Write-Output "set git proxy ok"
 }
 
 function unsetproxy($v) {
+  $env:http_proxy="";
+  $env:https_proxy=""
+  Write-Output "unset env http_proxy,https_proxy done!"
+
   #git
-  git config --global --unset http.proxy
-  git config --global --unset https.proxy
-  echo "unset git proxy ok"
+  # git config --global --unset http.proxy
+  # git config --global --unset https.proxy
+  # Write-Output "unset git proxy ok"
 }
 
 #set-location 'd:/works'
