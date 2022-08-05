@@ -19,11 +19,11 @@ function Test-Command($cmdname) {
 }
 
 function uprofile {
-  & $profile
+  & $PROFILE
 }
 
 function lspath {
-  ($Env:Path).Split(";")
+  ($env:Path).Split(";")
 }
 
 function get-process-for-port($port) {
@@ -61,6 +61,42 @@ function unsetproxy($v) {
   # Write-Output "unset git proxy ok"
 }
 
+# # making sure a bunch of folders exist:
+# 'C:\test1', 'C:\test2' | Assert-FolderExists
+
+# # making sure the path assigned to a variable exists:
+# ($Path = 'c:\test3') | Assert-FolderExists
+# filter Assert-FolderExists
+# {
+#   $exists = Test-Path -Path $_ -PathType Container
+#   if (!$exists) { 
+#     Write-Warning "$_ did not exist. Folder created."
+#     $null = New-Item -Path $_ -ItemType Directory 
+#   }
+# }
+
+function Assert-FolderExists
+{
+  param
+  (
+    [Parameter(Mandatory,ValueFromPipeline)]
+    [string[]]
+    $Path
+  )
+  
+  process
+  {
+    foreach($_ in $Path)
+    {
+      $exists = Test-Path -Path $_ -PathType Container
+      if (!$exists) { 
+        Write-Warning "$_ did not exist. Folder created."
+        $null = New-Item -Path $_ -ItemType Directory 
+      }
+    }
+  }
+}
+
 #set-location 'd:/works'
 
 #try { $null = gcm pshazz -ea stop; pshazz init } catch { }
@@ -69,6 +105,7 @@ function unsetproxy($v) {
 #Set-Theme Sorin
 #Set-Prompt
 #Set-Theme Agnoster
+
 
 if (Test-Command starship) {
   Invoke-Expression (&starship init powershell)
@@ -87,4 +124,11 @@ if (Test-Command rustup) {
 }
 
 
-
+# PowerShell parameter completion shim for the dotnet CLI
+# from https://docs.microsoft.com/zh-cn/dotnet/core/tools/enable-tab-autocomplete?WT.mc_id=modinfra-35653-salean#powershell
+Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
+  param($commandName, $wordToComplete, $cursorPosition)
+    dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
+      [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+    }
+}
