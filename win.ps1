@@ -124,6 +124,8 @@ $apps = @(
     #,"thunderbird" #extras email client
     ,"sql-server-management-studio-np" #nonportable
     #,"tectonic" #main texlive wrapper
+
+    # ,"trafficmonitor"
 )
 
 if ($apps.Contains("rustup")) {
