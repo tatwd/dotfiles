@@ -172,6 +172,8 @@ $my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
 $config_files = [System.Collections.ArrayList]@(
     # set powershell profile
     @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"}
+    # maven settings
+    # ,@{url="$my_dotfiles_prefix/.m2.settings.xml"; dist="$HOME/.m2/settings.xml"}
 )
 
 # set starship config
