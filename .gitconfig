@@ -1,0 +1,8 @@
+[init]
+    defaultBranch = main
+
+# [includeIf "gitdir:D:/works/"]
+#     path = ~/.gitconfig-works
+
+[includeIf "gitdir:D:/tatwd/"]
+    path = ~/.gitconfig-github
