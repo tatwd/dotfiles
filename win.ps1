@@ -44,7 +44,8 @@ scoop update
     "nerd-fonts",
     "versions",
     "nirsoft",
-    "nonportable"
+    "nonportable",
+    "java"
 ) | ForEach-Object {
     scoop bucket add $_
 }
