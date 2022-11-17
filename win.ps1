@@ -18,7 +18,7 @@
 # Uninstall scoop:
 #   scoop uninstall scoop
 
-# scoop config proxy 127.0.0.1:8980
+# scoop config proxy 127.0.0.1:7890
 # scoop config proxy none # 直连
 # scoop config proxy default # system proxy settings
 # scoop config rm proxy
@@ -54,6 +54,13 @@ scoop update
 # 更多 bucket 源可自行查找 https://scoop.sh/#/buckets
 # scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
 # scoop bucket add scoop https://github.com/dodorz/scoop
+# scoop bucket add scoopet https://github.com/ivaquero/scoopet
+
+@(
+    @{name="scoop-sysinternals"; url="https://github.com/niheaven/scoop-sysinternals.git"}
+) | ForEach-Object {
+    scoop bucket add $_.name $_.url
+}
 
 # scoop bucket list
 
@@ -127,6 +134,9 @@ $apps = @(
     #,"tectonic" #main texlive wrapper
 
     # ,"trafficmonitor"
+    #,"miller"
+    #,"hostctl"
+    #,"fd"
 )
 
 if ($apps.Contains("rustup")) {
