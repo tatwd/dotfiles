@@ -55,6 +55,7 @@ scoop update
 # scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
 # scoop bucket add scoop https://github.com/dodorz/scoop
 # scoop bucket add scoopet https://github.com/ivaquero/scoopet
+# scoop bucket add DEV-Tools https://github.com/anderlli0053/DEV-tools.git
 
 @(
     @{name="scoop-sysinternals"; url="https://github.com/niheaven/scoop-sysinternals.git"}
