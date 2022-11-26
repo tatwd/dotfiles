@@ -68,6 +68,12 @@ scoop update
 
 # to install app list
 # can search in https://scoop.sh/#/apps
+
+$gloabal_apps = @(
+    "FiraCode" #nerd-fonts
+    #,"FiraCode-NF" #nerd-fonts
+)
+
 $apps = @(
     # "7zip", # main
     "sudo", # main
@@ -108,9 +114,6 @@ $apps = @(
     # "go", #main
     # ,"python" #main
 
-    ,"FiraCode" #nerd-fonts
-    #,"FiraCode-NF" #nerd-fonts
-
     # ,"vlc" #extras
     # ,"dbeaver" #extras
 
@@ -147,6 +150,11 @@ if ($apps.Contains("rustup")) {
 }
 
 # Write-Output $apps.length
+
+$gloabal_apps | ForEach-Object {
+    scoop install -g $_
+}
+
 $apps | ForEach-Object {
     scoop install $_
 }
