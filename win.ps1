@@ -57,9 +57,9 @@ scoop update
 # scoop bucket add scoop https://github.com/dodorz/scoop
 
 @(
-    @{name="chawyehsu_dorado"; url="https://github.com/chawyehsu/dorado"}
-    # ,@{name="ivaquero_scoopet"; url="https://github.com/ivaquero/scoopet"}
-    # ,@{name="anderlli0053_DEV-tools"; url="https://github.com/anderlli0053/DEV-tools"},
+    @{name="chawyehsu_dorado"; url="https://github.com/chawyehsu/dorado.git"}
+    # ,@{name="ivaquero_scoopet"; url="https://github.com/ivaquero/scoopet.git"}
+    # ,@{name="anderlli0053_DEV-tools"; url="https://github.com/anderlli0053/DEV-tools.git"},
 ) | ForEach-Object {
     scoop bucket add $_.name $_.url
 }
@@ -143,6 +143,10 @@ $apps = @(
     #,"miller"
     #,"hostctl"
     #,"fd"
+
+    # ,"clash-verge" #chawyehsu_dorado
+    # ,"dingtalk" #chawyehsu_dorado
+    # ,"netneteasemusic" #chawyehsu_dorado
 )
 
 if ($apps.Contains("rustup")) {
