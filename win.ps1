@@ -55,14 +55,14 @@ scoop update
 # 更多 bucket 源可自行查找 https://scoop.sh/#/buckets
 # scoop bucket add scoopcn https://github.com/scoopcn/scoopcn.git
 # scoop bucket add scoop https://github.com/dodorz/scoop
-# scoop bucket add scoopet https://github.com/ivaquero/scoopet
-# scoop bucket add DEV-Tools https://github.com/anderlli0053/DEV-tools.git
 
-# @(
-#     @{name="scoop-sysinternals"; url="https://github.com/niheaven/scoop-sysinternals.git"}
-# ) | ForEach-Object {
-#     scoop bucket add $_.name $_.url
-# }
+@(
+    @{name="chawyehsu_dorado"; url="https://github.com/chawyehsu/dorado"}
+    # ,@{name="ivaquero_scoopet"; url="https://github.com/ivaquero/scoopet"}
+    # ,@{name="anderlli0053_DEV-tools"; url="https://github.com/anderlli0053/DEV-tools"},
+) | ForEach-Object {
+    scoop bucket add $_.name $_.url
+}
 
 # scoop bucket list
 
