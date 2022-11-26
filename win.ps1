@@ -45,7 +45,8 @@ scoop update
     "versions",
     "nirsoft",
     "nonportable",
-    "java"
+    # "java",
+    "sysinternals"
 ) | ForEach-Object {
     scoop bucket add $_
 }
@@ -57,11 +58,11 @@ scoop update
 # scoop bucket add scoopet https://github.com/ivaquero/scoopet
 # scoop bucket add DEV-Tools https://github.com/anderlli0053/DEV-tools.git
 
-@(
-    @{name="scoop-sysinternals"; url="https://github.com/niheaven/scoop-sysinternals.git"}
-) | ForEach-Object {
-    scoop bucket add $_.name $_.url
-}
+# @(
+#     @{name="scoop-sysinternals"; url="https://github.com/niheaven/scoop-sysinternals.git"}
+# ) | ForEach-Object {
+#     scoop bucket add $_.name $_.url
+# }
 
 # scoop bucket list
 
@@ -126,7 +127,8 @@ $apps = @(
     # ,"draw.io" #extras
     #,"postman" #extras
 
-    ,"CurrPorts" #nirsoft
+    , "tcpview" #sysinternals
+    # ,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
     ,"openwithplusplus" #extras
 
