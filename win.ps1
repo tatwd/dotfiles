@@ -130,8 +130,11 @@ $apps = @(
     # ,"draw.io" #extras
     #,"postman" #extras
 
-    , "tcpview" #sysinternals
-    # ,"CurrPorts" #nirsoft
+    ,"pstools" #sysinternals
+    ,"tcpview" #sysinternals
+    # ."procdump" #sysinternals
+    # ,"sysinternals-suite" #sysinternals
+    #,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
     ,"openwithplusplus" #extras
 
@@ -143,6 +146,7 @@ $apps = @(
     #,"miller"
     #,"hostctl"
     #,"fd"
+
 
     # ,"clash-verge" #dorado
     # ,"dingtalk" #dorado
