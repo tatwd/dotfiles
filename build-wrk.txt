@@ -1,0 +1,6 @@
+# use mingw instead of msys2 env
+pacman -S mingw-w64-ucrt-x86_64-gcc unzip
+make
+
+# podman-machine-default fedora
+sudo dnf install gcc make perl

@@ -1,0 +1,17 @@
+envs_dirs:
+  - D:\tmp\anaconda\envs
+pkgs_dirs:
+  - D:\tmp\anaconda\pkgs
+
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  - defaults
+
+show_channel_urls: true
+ssl_verify: false
+
+proxy_servers:
+  http: http://127.0.0.1:7890
+  https: http://127.0.0.1:7890
