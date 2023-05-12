@@ -46,7 +46,8 @@ scoop update
     "nirsoft",
     "nonportable",
     # "java",
-    "sysinternals"
+    "sysinternals",
+    "games"
 ) | ForEach-Object {
     scoop bucket add $_
 }
