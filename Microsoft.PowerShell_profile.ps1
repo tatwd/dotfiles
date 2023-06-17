@@ -39,9 +39,17 @@ function psfd($v) {
   Get-Process | where {$_.ProcessName -match $v -or $_.Id -match $v}
 }
 
+function getproxysetting {
+  $setting = Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings'
+  return @{ enable = $setting.ProxyEnable; server = $setting.ProxyServer  }
+}
+
 function setproxy {
-  $env:http_proxy="http://127.0.0.1:7890";
-  $env:https_proxy="http://127.0.0.1:7890"
+  $server = getproxysetting | select server
+  Write-Output "proxy server: $server"
+  
+  $env:http_proxy="http://$server";
+  $env:https_proxy="http://$server"
   Write-Output "set env http_proxy,https_proxy done!"
 
   #git
