@@ -45,7 +45,8 @@ function getproxysetting {
 }
 
 function setproxy {
-  $server = getproxysetting | select server
+  $setting = getproxysetting
+  $server = $setting.server
   Write-Output "proxy server: $server"
   
   $env:http_proxy="http://$server";
