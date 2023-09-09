@@ -61,7 +61,7 @@ function setproxy {
   Write-Output "set git proxy done!"
 
   #scoop
-  scoop config proxy $env:http_proxy
+  scoop config proxy $server
   Write-Output "set scoop proxy done!"
 }
 
