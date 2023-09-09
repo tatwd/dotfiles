@@ -10,6 +10,8 @@ set-alias .. cd..
 function cd... { cd ../../ }
 set-alias ... cd...
 
+# Set-Alias -Name tfc -Value D:\tools\TEE-CLC-14.135.3\tf.cmd 
+
 function openhosts {
   notepad "C:\Windows\System32\drivers\etc\hosts"
 }
@@ -48,26 +50,34 @@ function setproxy {
   $setting = getproxysetting
   $server = $setting.server
   Write-Output "proxy server: $server"
-  
+
   $env:http_proxy="http://$server";
   $env:https_proxy="http://$server"
   Write-Output "set env http_proxy,https_proxy done!"
 
   #git
-  # git config --global http.proxy "http://127.0.0.1:7890"
-  # git config --global https.proxy "http://127.0.0.1:7890"
-  # Write-Output "set git proxy ok"
+  git config --global http.proxy $env:http_proxy
+  git config --global https.proxy $env:https_proxy
+  Write-Output "set git proxy done!"
+
+  #scoop
+  scoop config proxy $env:http_proxy
+  Write-Output "set scoop proxy done!"
 }
 
-function unsetproxy($v) {
+function unsetproxy {
   $env:http_proxy="";
   $env:https_proxy=""
   Write-Output "unset env http_proxy,https_proxy done!"
 
   #git
-  # git config --global --unset http.proxy
-  # git config --global --unset https.proxy
-  # Write-Output "unset git proxy ok"
+  git config --global --unset http.proxy
+  git config --global --unset https.proxy
+  Write-Output "unset git proxy ok"
+
+    #scoop
+  scoop config proxy none
+  Write-Output "unset scoop proxy ok!"
 }
 
 # # making sure a bunch of folders exist:
@@ -132,6 +142,9 @@ if (Test-Command rustup) {
   $env:RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
 }
 
+if (Test-Command conda) {
+  (& conda 'shell.powershell' 'hook') | Out-String | Invoke-Expression
+}
 
 # PowerShell parameter completion shim for the dotnet CLI
 # from https://docs.microsoft.com/zh-cn/dotnet/core/tools/enable-tab-autocomplete?WT.mc_id=modinfra-35653-salean#powershell
@@ -141,3 +154,11 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
       [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
     }
 }
+
+#Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+#Set-PSReadlineKeyHandler -Key Ctrl+UpArrow -Function HistorySearchBackward
+#Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+
+# 关闭 dotnet-cli 遥测
+$env:DOTNET_CLI_TELEMETRY_OPTOUT=1
