@@ -21,7 +21,7 @@ function Test-Command($cmdname) {
 }
 
 function uprofile {
-  & $PROFILE
+  . $PROFILE
 }
 
 function lspath {
@@ -114,6 +114,18 @@ function Assert-FolderExists
       }
     }
   }
+}
+
+function newpass {
+  $source = '0123456789abcdefghijklmnopqistuvwxyzABCDEFGHIJKLMNOPQISTUVWXYZ_!@#$%.,-+=?'
+  $passwords = 0..10
+
+  for ($i = 0; $i -le ($passwords.length - 1); $i += 1) {
+    $idx = random -Maximum $source.length
+    $passwords[$i] = $source[$idx] 
+  }
+
+  return Join-String -InputObject $passwords
 }
 
 #set-location 'd:/works'
