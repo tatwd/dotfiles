@@ -137,6 +137,9 @@ function newpass {
 #Set-Prompt
 #Set-Theme Agnoster
 
+if (Test-Command podman) {
+  set-alias docker podman
+}
 
 if (Test-Command starship) {
   Invoke-Expression (&starship init powershell)
