@@ -59,7 +59,7 @@ scoop update
 
 @(
     @{name="dorado"; url="https://github.com/chawyehsu/dorado.git"}
-    # ,@{name="ivaquero_scoopet"; url="https://github.com/ivaquero/scoopet.git"}
+    # ,@{name="scoopet"; url="https://github.com/ivaquero/scoopet.git"}
     # ,@{name="anderlli0053_DEV-tools"; url="https://github.com/anderlli0053/DEV-tools.git"},
 ) | ForEach-Object {
     scoop bucket add $_.name $_.url
@@ -77,10 +77,10 @@ $gloabal_apps = @(
 
 $apps = @(
     # "7zip", # main
-    "sudo", # main
+    # "sudo", # main latest window11 default has sudo
     #,"pwsh" #main it's coress-platform instead of windows powershell
-    ,"scoop-completion" #extras autocomplete in powershell, enable in $PROFILE
-    "starship", # main
+    "scoop-completion" #extras autocomplete in powershell, enable in $PROFILE
+    ,"starship", # main
     # "figlet", # main
     # "pshazz", # main
     # "git", # main
@@ -93,7 +93,7 @@ $apps = @(
     "vscode", # extras
     #"windows-terminal", # extras
     "powertoys", #extras
-    # "googlechrome", # extras
+    "googlechrome", # extras
     "chromium", # extras
     #"firefox" # extras
     # "firefox-developer", # versions
@@ -106,7 +106,7 @@ $apps = @(
     # "docker", #main
     # "podman", #main
 
-    "dotnet-sdk", # main
+    # "dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
     # "dotnet2-sdk", # versions
     # "dotnet3-sdk", # versions
@@ -126,15 +126,15 @@ $apps = @(
     ,"sumatrapdf" #extras
     #,"mobaxterm" #extras
     #,"putty" #extras
-    #,"spacesniffer" #extras
+    # ,"spacesniffer" #extras
     #,"dismplusplus" #extras
     # ,"draw.io" #extras
     #,"postman" #extras
 
-    ,"pstools" #sysinternals
-    ,"tcpview" #sysinternals
+    # ,"pstools" #sysinternals
+    # ,"tcpview" #sysinternals
     # ."procdump" #sysinternals
-    # ,"sysinternals-suite" #sysinternals
+    ,"sysinternals-suite" #sysinternals
     #,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
     ,"openwithplusplus" #extras
