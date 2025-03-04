@@ -146,7 +146,7 @@ if (Test-Command starship) {
 }
 
 if (Test-Command scoop.ps1) {
-  $completeModulePath = "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\modules\scoop-completion"
+  $completeModulePath = "$env:SCOOP\modules\scoop-completion"
   if (Test-Path $completeModulePath) {
     Import-Module  $completeModulePath
   }
@@ -177,3 +177,6 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 
 # 关闭 dotnet-cli 遥测
 $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+$env:OLLAMA_MODELS="D:\ollama-models"
+#$env:OLLAMA_ORIGINS="https://ollama-ui.github.io"
