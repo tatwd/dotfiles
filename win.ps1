@@ -142,6 +142,7 @@ $apps = @(
     #,"thunderbird" #extras email client
     ,"sql-server-management-studio-np" #nonportable
     #,"tectonic" #main texlive wrapper
+    # ,"vcpkg"
 
     # ,"trafficmonitor"
     #,"miller"
