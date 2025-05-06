@@ -48,7 +48,7 @@
         "cursorColor": "#C8C8C8",
         "cursorShape": "filledBox",
         "font": {
-          "face": "Fira Code"
+          "face": "'Maple Mono NF CN','FiraCode Nerd Font','Cascadia Mono'"
         },
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": false,

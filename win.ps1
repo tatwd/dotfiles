@@ -72,7 +72,10 @@ scoop update
 
 $gloabal_apps = @(
     "FiraCode" #nerd-fonts
-    #,"FiraCode-NF" #nerd-fonts
+    ,"FiraCode-NF" #nerd-fonts
+    ,"Maple-Mono" #nerd-fonts
+    ,"Maple-Mono-NF" #nerd-fonts
+    ,"Maple-Mono-NF-CN" #nerd-fonts
 )
 
 $apps = @(
