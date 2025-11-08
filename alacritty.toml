@@ -1,0 +1,19 @@
+[font]
+size = 13.0
+
+[font.normal]
+family = "Maple Mono NF"
+style = "Regular"
+
+[scrolling]
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 3
+y = 3
