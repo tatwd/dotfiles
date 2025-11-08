@@ -1,8 +1,11 @@
-# home-manager config file
-# ~/.config/home-manager/home.nix
+# see options in https://nix-community.github.io/home-manager/options.xhtml
 
 { config, pkgs, ... }:
 
+let 
+  dotfilesDir = "${config.home.homeDirectory}/tatwd/dotfiles";
+  homeConfigDir = "${config.home.homeDirectory}/.config";
+in
 {
   home.username = "jincl";
   home.homeDirectory = "/Users/jincl";
@@ -26,8 +29,10 @@
 #    dotnet-sdk_8
     dotnet-sdk_9
     jdk8
-    tectonic
     cmake
+#    clang-tools
+
+    tectonic
 #    unrar
     p7zip
 
@@ -36,6 +41,8 @@
     jetbrains.rider
 #    iterm2
     alacritty
+    wezterm
+#    ghostty
     avalonia-ilspy
     ollama
     podman
@@ -43,13 +50,13 @@
     zellij
 #    godot
     mitmproxy
-    postman
+#    postman
 
 # zsh plugins
-    zsh-autosuggestions
+#    zsh-autosuggestions
 #    zsh-syntax-highlighting
 #    zsh-completions
-    nix-zsh-completions
+#    nix-zsh-completions
 
 # fonts
     nerd-fonts.fira-code
@@ -61,11 +68,11 @@
   ];
 
   home.sessionVariables = {
-#    EDITOR = "emacs";
     EDITOR = "nvim";
     GOPROXY = "https://goproxy.io,direct";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_9}";
     JAVA_HOME = "${pkgs.jdk8}";
+    HMNIX = "${homeConfigDir}/home-manager/home.nix";
   };
 
   home.sessionPath = [
@@ -74,28 +81,14 @@
 
   home.file = {
 
+# alacritty config file
+    ".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/alacritty.toml";
+
 # starship config file
-    ".config/starship.toml".text = ''
-      # Get editor completions based on the config schema
-      "$schema" = 'https://starship.rs/config-schema.json'
+    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/starship.toml";
 
-      add_newline = false
-      command_timeout = 1000
-
-      [character]
-      success_symbol = "[➜](bold green)"
-      error_symbol = "[➜](bold red)"
-      vicmd_symbol = "[➜](bold green)"
-
-      [package]
-      disabled = true
-
-      [dotnet]
-      symbol = ".net "
-
-      [nodejs]
-      symbol = "⬢ "
-    '';
+# wezterm config file
+    ".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/wezterm.lua";
 
     ".npmrc".text = ''
        prefix=${config.home.homeDirectory}/.npm-global
@@ -108,13 +101,13 @@
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
-#    enableCompletion = true;
-#    syntaxHighlighting.enable = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
 
     shellAliases = {
       ll = "ls -lha";
       hm = "home-manager";
-      nix-clean = "nix-collect-garbage -d";
+      nix-clean = "nix-collect-garbage --delete-old";
     };
 
     initContent = ''
@@ -124,47 +117,24 @@
 
   programs.git = {
     enable = true;
-    userName = "tatwd";
-    userEmail = "tatwdo@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "jincl";
+      user.email = "tatwdo@gmail.com";
       init.defaultBranch = "main";
     };
     includes = [
-      #works
       {
         condition = "gitdir:~/works/";
         path = "~/.gitconfig-work";
       }
-      # github
       {
         condition = "gitdir:~/tatwd/";
         path = "~/.gitconfig-github";
       }
     ];
-  };
-
-# 终端配置
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal = {
-          family = "Maple Mono NF"; style = "Regular";
-        };
-        size = 13.0;
-      };
-#      ligatures = true;
-      window = {
-        padding = { x = 3; y = 3; };
-        dynamic_padding = true;
-      };
-      scrolling = {
-        multiplier = 3;
-      };
-      selection = {
-        save_to_clipboard = true;
-      };
-    };
+    ignores = [
+      ".DS_Store"
+    ];
   };
 
   programs.neovim = {
