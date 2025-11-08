@@ -1,5 +1,7 @@
+# See more options from https://alacritty.org/config-alacritty.html
+
 [font]
-size = 13.0
+size = 14.0
 
 [font.normal]
 family = "Maple Mono NF"
@@ -13,6 +15,7 @@ save_to_clipboard = true
 
 [window]
 dynamic_padding = true
+#decorations = "Buttonless"
 
 [window.padding]
 x = 3
