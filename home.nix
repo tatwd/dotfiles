@@ -8,16 +8,14 @@ in
 {
   home.username = "jincl";
   home.homeDirectory = "/Users/jincl";
-
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-#    git
-#    fzf
-#    neovim
-#    htop
     bottom
     inetutils
+#    unrar
+    p7zip
+
     go
     deno
     nodejs_22
@@ -29,15 +27,12 @@ in
     jdk8
     cmake
 #    clang-tools
-
     tectonic
-#    unrar
-    p7zip
 
     vscode
     google-chrome
     jetbrains.rider
-
+    avalonia-ilspy
 #    yabai
 #    skhd
 #    i3
@@ -49,7 +44,6 @@ in
 #    zellij
 #    ghostty
 #    iterm2
-    avalonia-ilspy
     ollama
     podman
 #    godot
@@ -88,9 +82,6 @@ in
 # alacritty config file
 #    ".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/alacritty.toml";
 
-# starship config file
-#    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/starship.toml";
-
 # wezterm config file
     ".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/wezterm.lua";
 
@@ -112,24 +103,12 @@ in
     syntaxHighlighting.enable = true;
     shellAliases = {
       ll = "ls -lha";
+      ".." = "cd ..";
+      "..." = "cd ../../";
       hm = "home-manager";
       nix-clean = "nix-collect-garbage --delete-old";
       chrome = "google-chrome-stable";
     };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    configPath = "${dotfilesDir}/starship.toml";
-  };
-
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--max-columns-preview"
-      "--colors=line:style:bold"
-    ];
   };
 
   programs.git = {
@@ -151,6 +130,20 @@ in
     ];
     ignores = [
       ".DS_Store"
+    ];
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    configPath = "${dotfilesDir}/starship.toml";
+  };
+
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--max-columns-preview"
+      "--colors=line:style:bold"
     ];
   };
 
