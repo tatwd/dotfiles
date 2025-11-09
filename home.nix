@@ -1,5 +1,4 @@
 # see options in https://nix-community.github.io/home-manager/options.xhtml
-
 { config, pkgs, ... }:
 
 let 
@@ -10,16 +9,15 @@ in
   home.username = "jincl";
   home.homeDirectory = "/Users/jincl";
 
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
     git
-    fzf
+#    fzf
 #    neovim
 #    htop
     bottom
     inetutils
-    starship
     go
     deno
     nodejs_22
@@ -39,6 +37,12 @@ in
     vscode
     google-chrome
     jetbrains.rider
+
+#    yabai
+#    skhd
+#    i3
+#    keycastr
+#    starship
     wezterm
 #    alacritty
 #    tmux
@@ -82,10 +86,10 @@ in
   home.file = {
 
 # alacritty config file
-    ".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/alacritty.toml";
+#    ".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/alacritty.toml";
 
 # starship config file
-    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/starship.toml";
+#    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/starship.toml";
 
 # wezterm config file
     ".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/wezterm.lua";
@@ -108,11 +112,18 @@ in
       ll = "ls -lha";
       hm = "home-manager";
       nix-clean = "nix-collect-garbage --delete-old";
+      chrome = "google-chrome-stable";
     };
 
-    initContent = ''
-      eval "$(starship init zsh)"
-    '';
+ #   initContent = ''
+ #     eval "$(starship init zsh)"
+ #   '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    configPath = "${dotfilesDir}/starship.toml";
   };
 
   programs.git = {
@@ -137,19 +148,42 @@ in
     ];
   };
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
 
-    extraConfig = ''
-      set number
-      set relativenumber
-      set list
-      set listchars=tab:▸\ ,trail:·,nbsp:␣,space:·
-      "set expandtab " replace tab -> space
-    '';
     extraLuaConfig = ''
+      
+      vim.opt.number = true
+      vim.opt.relativenumber = true
+      vim.opt.cursorline = true
+      vim.opt.list = true
+      vim.opt.listchars = {
+        tab = "▸ ",
+        space = "·",
+        --trail = "·",
+        precedes = "«",
+        extends = "»",
+        nbsp = "␣",
+        --eol = "¬",
+      }
+      vim.opt.inccommand = 'split'
+      vim.opt.lazyredraw = true
+
+      vim.g.mapleader = " "
+      vim.g.maplocalleader = "\\"
+
+      vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = "Save file" })
+      vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit' })
+      vim.keymap.set('n', '<leader>wq', '<cmd>wq<CR>', { desc = 'Save and quit' })
+      vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
+
       -- Bootstrap lazy.nvim
       local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
       if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -166,13 +200,7 @@ in
         end
       end
       vim.opt.rtp:prepend(lazypath)
-
-      vim.g.mapleader = " "
-      vim.g.maplocalleader = "\\"
-
-      vim.opt.inccommand = 'split'
-      vim.opt.lazyredraw = true
-
+      
       -- Setup lazy.nvim
       require("lazy").setup({
         spec = {
@@ -180,6 +208,7 @@ in
           { "tpope/vim-commentary"  },
           { "tpope/vim-surround" },
           { "tpope/vim-repeat" },
+          -- { "tpope/vim-fugitive" },
           { 
             "catppuccin/nvim", 
             name = "catppuccin", 
@@ -193,25 +222,30 @@ in
             end,
           },
           { "nvim-tree/nvim-web-devicons", lazy = true },
-          {
-            "nvim-tree/nvim-tree.lua",
-            opts = {}
+          { "nvim-tree/nvim-tree.lua", opts = {} },
+          { 
+            "nvim-lualine/lualine.nvim", 
+            opts = { theme = "catppuccin" }
           },
           {
-            "nvim-lualine/lualine.nvim",
-            opts = { theme = "catppuccin" }
+            "folke/which-key.nvim",
+            event = "VeryLazy",
+            opts = {},
+            keys = {
+              {
+                "<leader>?",
+                function()
+                  require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+              },
+            },
           }
         },
-        --install = { colorscheme = { "habamax" } },
         --checker = { enabled = true },
       })
 
-      --vim.cmd.colorscheme("catppuccin")
     '';
-
-#    plugins = with pkgs.vimPlugins; [
-#      vim-sleuth
-#    ];
 
   };
 
