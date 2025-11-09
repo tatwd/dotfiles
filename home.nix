@@ -174,14 +174,20 @@ in
         --eol = "¬",
       }
       vim.opt.inccommand = 'split'
-      vim.opt.lazyredraw = true
+      --vim.opt.lazyredraw = true
 
       vim.g.mapleader = " "
       vim.g.maplocalleader = "\\"
 
-      vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = "Save file" })
+      vim.keymap.set('n', '<leader>w', function()
+        if vim.bo.modified then
+          vim.cmd('w')
+        else
+          print('No changes to save')
+        end
+      end, { desc = "Save modified file" })
       vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit' })
-      vim.keymap.set('n', '<leader>wq', '<cmd>wq<CR>', { desc = 'Save and quit' })
+      --vim.keymap.set('n', '<leader>wq', '<cmd>wq<CR>', { desc = 'Save and quit' })
       vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
 
       -- Bootstrap lazy.nvim
