@@ -2,12 +2,14 @@
 { config, pkgs, ... }:
 
 let 
-  dotfilesDir = "${config.home.homeDirectory}/tatwd/dotfiles";
-  homeConfigDir = "${config.home.homeDirectory}/.config";
+  gUsername = "jincl";
+  gHomeDir = "/Users/${gUsername}"; # macOS home directory
+  gConfigDir = "${gHomeDir}/.config";
+  gDotfilesDir = "${gHomeDir}/tatwd/dotfiles";
 in
 {
-  home.username = "jincl";
-  home.homeDirectory = "/Users/jincl";
+  home.username = gUsername;
+  home.homeDirectory = gHomeDir;
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
@@ -70,7 +72,7 @@ in
     GOPROXY = "https://goproxy.io,direct";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_9}";
     JAVA_HOME = "${pkgs.jdk8}";
-    HMNIX = "${homeConfigDir}/home-manager/home.nix";
+    HMNIX = "${gConfigDir}/home-manager/home.nix";
   };
 
   home.sessionPath = [
@@ -80,16 +82,16 @@ in
   home.file = {
 
 # alacritty config file
-#    ".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/alacritty.toml";
+#    ".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${gDotfilesDir}/alacritty.toml";
 
 # wezterm config file
-    ".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/wezterm.lua";
+    ".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${gDotfilesDir}/wezterm.lua";
 
 # neovim config file
-    ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/nvim_init.lua";
+    ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${gDotfilesDir}/nvim_init.lua";
 
     ".npmrc".text = ''
-       prefix=${config.home.homeDirectory}/.npm-global
+       prefix=${gHomeDir}/.npm-global
     '';
 
   };
@@ -136,7 +138,7 @@ in
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    configPath = "${dotfilesDir}/starship.toml";
+    configPath = "${gDotfilesDir}/starship.toml";
   };
 
   programs.ripgrep = {
