@@ -3,14 +3,16 @@
 
 local wezterm = require 'wezterm'
 
+local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
+
 local config = wezterm.config_builder()
 
-config.initial_cols = 92
-config.initial_rows = 30
+config.initial_cols = 80
+config.initial_rows = 26
 
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.98
---config.macos_window_background_blur = 20
+config.macos_window_background_blur = 20
 config.window_padding = {
   left = '1cell',
   right = '1cell',
@@ -21,17 +23,23 @@ config.window_padding = {
 --  COLORTERM = "truecolor",
 --}
 
+config.color_scheme = 'Catppuccin Mocha'
+
 --config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+config.show_tab_index_in_tab_bar = true
+config.show_tabs_in_tab_bar = true
 
 config.font_size = 14
 --config.font = wezterm.font 'JetBrainsMono Nerd Font'
 --config.font = wezterm.font 'Maple Mono NF'
 config.font = wezterm.font('Maple Mono NF', { weight = 'Regular' })
 --config.font = wezterm.font('JetBrains Mono', { weight = 'Regular' })
+config.command_palette_font = config.font
+-- config.command_palette_rows = 14
+config.command_palette_bg_color = '#1e2129'
 
-config.color_scheme = 'Catppuccin Mocha'
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
@@ -47,8 +55,6 @@ config.keys = {
   { key = '?', mods = 'LEADER', action = wezterm.action.ShowLauncher },
 }
 
-
-local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 
 if is_windows then
   config.default_prog = { 'pwsh.exe', '-NoLogo' }

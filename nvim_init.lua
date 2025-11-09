@@ -1,4 +1,6 @@
--- $env:LOCALAPPDATA\nvim\init.lua
+-- windows: $env:LOCALAPPDATA\nvim\init.lua
+-- macOS: $HOME/.config/nvim/init.lua
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
