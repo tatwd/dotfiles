@@ -30,6 +30,10 @@ end, { desc = "Save modified file" })
 vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit' })
 --vim.keymap.set('n', '<leader>wq', '<cmd>wq<CR>', { desc = 'Save and quit' })
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
+vim.keymap.set('n', '<leader>t', '<cmd>tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<C-[>', '<cmd>tabprevious<CR>', { desc = 'Previous tab' })
+vim.keymap.set('n', '<C-]>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
+
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -49,6 +53,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim & plugins
+local CN_HOUR_MAP = {
+  "🐭", --"子", --"夜半",
+  "🐂", --"丑", --"雞鳴",
+  "寅", --"平旦",
+  "卯", --"日出",
+  "辰", --"食時",
+  "巳", --"隅中",
+  "午", --"日中",
+  "未", --"日昳",
+  "申", --"哺時",
+  "酉", --"日入",
+  "戌", --"黃昏",
+  "亥", --"人定"
+}
 local lazyPluginSpec = {
   { "tpope/vim-sleuth" },
   { "tpope/vim-commentary"  },
@@ -71,7 +89,30 @@ local lazyPluginSpec = {
   { "nvim-tree/nvim-tree.lua", opts = {} },
   { 
     "nvim-lualine/lualine.nvim", 
-    opts = { theme = "catppuccin" }
+    opts = {
+      options = {
+        theme = "catppuccin",
+        component_separators = { left = '·', right = '·' },
+        -- section_separators = '',
+      },
+      sections = {
+        -- lualine_z = { {'datetime', style='%I:%M %p'} },
+        -- lualine_y = {'progress'},
+        lualine_x = {
+          'encoding','fileformat','filetype',
+          -- 'location',
+          {
+            'datetime',
+            style='%H',
+            fmt = function(str)
+              local h = tonumber(str)
+              local index = (h == 23 or h == 0) and 0 or math.floor((h + 1) / 2)
+              return CN_HOUR_MAP[index + 1]
+            end
+          } 
+        },
+      },
+    }
   },
   {
     "folke/which-key.nvim",
