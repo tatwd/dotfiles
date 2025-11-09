@@ -1,3 +1,6 @@
+-- windows
+-- sudo New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE/.wezterm.lua" -Target "$dotfielsDir/wezterm.lua"
+
 local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
@@ -44,6 +47,13 @@ config.keys = {
   { key = '?', mods = 'LEADER', action = wezterm.action.ShowLauncher },
 }
 
+
+local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
+
+if is_windows then
+  config.default_prog = { 'pwsh.exe', '-NoLogo' }
+  config.default_cwd = "D:\\works"
+end
 
 return config
 
