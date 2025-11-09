@@ -107,17 +107,12 @@ in
     autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-
     shellAliases = {
       ll = "ls -lha";
       hm = "home-manager";
       nix-clean = "nix-collect-garbage --delete-old";
       chrome = "google-chrome-stable";
     };
-
- #   initContent = ''
- #     eval "$(starship init zsh)"
- #   '';
   };
 
   programs.starship = {
@@ -157,9 +152,7 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
-
     extraLuaConfig = ''
-      
       vim.opt.number = true
       vim.opt.relativenumber = true
       vim.opt.cursorline = true
@@ -206,51 +199,51 @@ in
         end
       end
       vim.opt.rtp:prepend(lazypath)
-      
-      -- Setup lazy.nvim
-      require("lazy").setup({
-        spec = {
-          { "tpope/vim-sleuth" },
-          { "tpope/vim-commentary"  },
-          { "tpope/vim-surround" },
-          { "tpope/vim-repeat" },
-          -- { "tpope/vim-fugitive" },
-          { 
-            "catppuccin/nvim", 
-            name = "catppuccin", 
-            priority = 1000,
-            opts = {
-              flavour = "mocha",
-              --transparent_background = true,
-            },
-            config = function()
-              vim.cmd.colorscheme("catppuccin")
-            end,
+
+      -- Setup lazy.nvim & plugins
+      local lazyPluginSpec = {
+        { "tpope/vim-sleuth" },
+        { "tpope/vim-commentary"  },
+        { "tpope/vim-surround" },
+        { "tpope/vim-repeat" },
+        -- { "tpope/vim-fugitive" },
+        { 
+          "catppuccin/nvim", 
+          name = "catppuccin", 
+          priority = 1000,
+          opts = {
+            flavour = "mocha",
+            --transparent_background = true,
           },
-          { "nvim-tree/nvim-web-devicons", lazy = true },
-          { "nvim-tree/nvim-tree.lua", opts = {} },
-          { 
-            "nvim-lualine/lualine.nvim", 
-            opts = { theme = "catppuccin" }
-          },
-          {
-            "folke/which-key.nvim",
-            event = "VeryLazy",
-            opts = {},
-            keys = {
-              {
-                "<leader>?",
-                function()
-                  require("which-key").show({ global = false })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-              },
-            },
-          }
+          config = function()
+            vim.cmd.colorscheme("catppuccin")
+          end,
         },
+        { "nvim-tree/nvim-web-devicons", lazy = true },
+        { "nvim-tree/nvim-tree.lua", opts = {} },
+        { 
+          "nvim-lualine/lualine.nvim", 
+          opts = { theme = "catppuccin" }
+        },
+        {
+          "folke/which-key.nvim",
+          event = "VeryLazy",
+          opts = {},
+          keys = {
+            {
+              "<leader>?",
+              function()
+                require("which-key").show({ global = false })
+              end,
+              desc = "Buffer Local Keymaps (which-key)",
+            },
+          },
+        }
+      }
+      require("lazy").setup({
+        spec = lazyPluginSpec,
         --checker = { enabled = true },
       })
-
     '';
 
   };
