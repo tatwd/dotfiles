@@ -53,19 +53,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim & plugins
-local CN_HOUR_MAP = {
-  "🐭", --"子", --"夜半",
-  "🐮", --"丑", --"雞鳴",
-  "🐯", --"寅", --"平旦",
-  "🐇", --"卯", --"日出",
-  "🐲", --"辰", --"食時",
-  "🐍", --"巳", --"隅中",
-  "🐴", --"午", --"日中",
-  "🐑", --"未", --"日昳",
-  "🙉", --"申", --"哺時",
-  "🐔", --"酉", --"日入",
-  "🐶", --"戌", --"黃昏",
-  "🐷", --"亥", --"人定"
+local CACHES = {
+  cnHourMap = {
+    "🐭", --"子", --"夜半",
+    "🐮", --"丑", --"雞鳴",
+    "🐯", --"寅", --"平旦",
+    "🐇", --"卯", --"日出",
+    "🐲", --"辰", --"食時",
+    "🐍", --"巳", --"隅中",
+    "🐴", --"午", --"日中",
+    "🐑", --"未", --"日昳",
+    "🙉", --"申", --"哺時",
+    "🐔", --"酉", --"日入",
+    "🐶", --"戌", --"黃昏",
+    "🐷", --"亥", --"人定"
+  }
 }
 local lazyPluginSpec = {
   { "tpope/vim-sleuth" },
@@ -105,9 +107,17 @@ local lazyPluginSpec = {
             "datetime",
             style="%H",
             fmt = function(str)
+              local lastH = CACHES.lualine_dt;
+              if lastH == str then
+                return CACHES.lualine_dt_fmt
+              end
               local h = tonumber(str)
-              local index = (h == 23 or h == 0) and 0 or math.floor((h + 1) / 2)
-              return CN_HOUR_MAP[index + 1]
+              local index = (h == 23 or h == 0) and 0
+                or math.floor((h + 1) / 2)
+              local fmtH = CACHES.cnHourMap[index + 1]
+              CACHES.lualine_dt = str
+              CACHES.lualine_dt_fmt = fmtH
+              return fmtH
             end
           } 
         },
@@ -155,7 +165,36 @@ local lazyPluginSpec = {
   --   "mason-org/mason.nvim", 
   --   opts = {}
   -- }
-
+  -- { "neovim/nvim-lspconfig" },
+  { "hrsh7th/cmp-nvim-lsp", lazy = true },
+  { "hrsh7th/cmp-buffer", lazy = true },
+  { 
+    "L3MON4D3/LuaSnip", version = "v2.4.1",
+    -- build = "make install_jsregexp"
+  },
+  { 
+    "hrsh7th/nvim-cmp",
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm({select = true}),
+          ['<C-Space>'] = cmp.mapping.complete(),
+        }),
+        sources = cmp.config.sources({
+          { name='nvim_lsp' }, --cmp-nvim-lsp
+          { name='luasnip' },
+        }, { {name='buffer'} })
+      })
+    end,
+  }
 }
 require("lazy").setup({
   spec = lazyPluginSpec,
