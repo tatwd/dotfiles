@@ -55,17 +55,17 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim & plugins
 local CN_HOUR_MAP = {
   "🐭", --"子", --"夜半",
-  "🐂", --"丑", --"雞鳴",
-  "寅", --"平旦",
-  "卯", --"日出",
-  "辰", --"食時",
-  "巳", --"隅中",
-  "午", --"日中",
-  "未", --"日昳",
-  "申", --"哺時",
-  "酉", --"日入",
-  "戌", --"黃昏",
-  "亥", --"人定"
+  "🐮", --"丑", --"雞鳴",
+  "🐯", --"寅", --"平旦",
+  "🐇", --"卯", --"日出",
+  "🐲", --"辰", --"食時",
+  "🐍", --"巳", --"隅中",
+  "🐴", --"午", --"日中",
+  "🐑", --"未", --"日昳",
+  "🙉", --"申", --"哺時",
+  "🐔", --"酉", --"日入",
+  "🐶", --"戌", --"黃昏",
+  "🐷", --"亥", --"人定"
 }
 local lazyPluginSpec = {
   { "tpope/vim-sleuth" },
@@ -92,18 +92,18 @@ local lazyPluginSpec = {
     opts = {
       options = {
         theme = "catppuccin",
-        component_separators = { left = '·', right = '·' },
+        component_separators = { left = "·", right = "·" },
         -- section_separators = '',
       },
       sections = {
-        -- lualine_z = { {'datetime', style='%I:%M %p'} },
-        -- lualine_y = {'progress'},
+        -- lualine_z = { {"datetime", style="%I:%M %p"} },
+        -- lualine_y = {"progress"},
         lualine_x = {
-          'encoding','fileformat','filetype',
-          -- 'location',
+          "encoding","fileformat","filetype",
+          -- "location",
           {
-            'datetime',
-            style='%H',
+            "datetime",
+            style="%H",
             fmt = function(str)
               local h = tonumber(str)
               local index = (h == 23 or h == 0) and 0 or math.floor((h + 1) / 2)
@@ -127,7 +127,35 @@ local lazyPluginSpec = {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  }
+  },
+  { "nvim-lua/plenary.nvim", lazy = true },
+  {
+    "nvim-telescope/telescope.nvim", tag = "v0.1.9",
+    -- dependencies = { 'nvim-lua/plenary.nvim' }
+    opts = {
+      -- defaults = {
+      --   preview = { treesitter = false },
+      -- },
+    },
+    config = function()
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter", branch = "main",
+    lazy = false, build = ":TSUpdate",
+    opts = {
+      -- ensure_installed = {"c","cpp","lua","bash","markdown"},
+      -- highlight = { enable = true },
+    }
+  },
+  -- dev env pkg manager
+  -- {
+  --   "mason-org/mason.nvim", 
+  --   opts = {}
+  -- }
+
 }
 require("lazy").setup({
   spec = lazyPluginSpec,
