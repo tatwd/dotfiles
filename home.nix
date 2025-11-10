@@ -160,4 +160,6 @@ in
     vimAlias = true;
   };
 
+  programs.fd = { enable = true; };
+
 }
