@@ -35,6 +35,13 @@ vim.keymap.set('n', '<C-[>', '<cmd>tabprevious<CR>', { desc = 'Previous tab' })
 vim.keymap.set('n', '<C-]>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
 
 
+-- 根据环境变量设置默认shell
+if vim.fn.has('win32') == 1 then
+  vim.opt.shell = vim.fn.executable('pwsh') == 1 and 'pwsh' or 'powershell'
+  vim.opt.shellcmdflag = '-nolog'
+end
+
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -170,6 +177,7 @@ local lazyPluginSpec = {
   { "hrsh7th/cmp-buffer", lazy = true },
   { 
     "L3MON4D3/LuaSnip", version = "v2.4.1",
+    lazy = true
     -- build = "make install_jsregexp"
   },
   { 

@@ -13,6 +13,7 @@ config.initial_rows = 26
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.98
 config.macos_window_background_blur = 20
+config.win32_system_backdrop = 'Mica'
 config.window_padding = {
   left = '1cell',
   right = '1cell',
@@ -27,7 +28,7 @@ config.color_scheme = 'Catppuccin Mocha'
 
 --config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = not is_windows
 config.show_tab_index_in_tab_bar = true
 config.show_tabs_in_tab_bar = true
 
