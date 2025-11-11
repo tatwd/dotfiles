@@ -44,6 +44,7 @@ end
 
 -- lsp
 vim.lsp.config['lua_ls'] = {
+  -- :MasonInatll lua-language-server
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
   -- settings = {
