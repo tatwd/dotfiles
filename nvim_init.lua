@@ -29,7 +29,7 @@ vim.keymap.set('n', '<leader>w', function()
 end, { desc = "Save modified file" })
 vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit' })
 --vim.keymap.set('n', '<leader>wq', '<cmd>wq<CR>', { desc = 'Save and quit' })
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
+-- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
 vim.keymap.set('n', '<leader>t', '<cmd>tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<C-[>', '<cmd>tabprevious<CR>', { desc = 'Previous tab' })
 vim.keymap.set('n', '<C-]>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
@@ -38,8 +38,24 @@ vim.keymap.set('n', '<C-]>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
 -- 根据环境变量设置默认shell
 if vim.fn.has('win32') == 1 then
   vim.opt.shell = vim.fn.executable('pwsh') == 1 and 'pwsh' or 'powershell'
-  vim.opt.shellcmdflag = '-nolog'
+  vim.opt.shellcmdflag = '-nologo'
 end
+
+
+-- lsp
+vim.lsp.config['lua_ls'] = {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  -- settings = {
+  --   diagnostics = {
+  --     globals = { 'vim' }
+  --   },
+  --   runtime = {
+  --     version = 'LuaJIT',
+  --   },
+  -- },
+}
+vim.lsp.enable('lua_ls')
 
 
 -- Bootstrap lazy.nvim
@@ -94,8 +110,19 @@ local lazyPluginSpec = {
       vim.cmd.colorscheme("catppuccin")
     end,
   },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "nvim-tree/nvim-tree.lua", opts = {} },
+  -- { "nvim-tree/nvim-web-devicons", lazy = true },
+  -- { "nvim-tree/nvim-tree.lua", opts = {} },
+  { "nvim-mini/mini.icons", opts = {}, lazy = true },
+  { 
+    "stevearc/oil.nvim",
+    lazy = false,
+    keys = {
+      { '-', '<CMD>Oil<CR>', 'Open parent directory' }
+    },
+    opts = {
+      default_file_explorer = true,
+    },
+  },
   { 
     "nvim-lualine/lualine.nvim", 
     opts = {
@@ -168,43 +195,26 @@ local lazyPluginSpec = {
     }
   },
   -- dev env pkg manager
-  -- {
-  --   "mason-org/mason.nvim", 
-  --   opts = {}
-  -- }
-  -- { "neovim/nvim-lspconfig" },
-  { "hrsh7th/cmp-nvim-lsp", lazy = true },
-  { "hrsh7th/cmp-buffer", lazy = true },
-  { 
-    "L3MON4D3/LuaSnip", version = "v2.4.1",
-    lazy = true
-    -- build = "make install_jsregexp"
+  {
+    "mason-org/mason.nvim", 
+    event = { 'BufReadPost','BufNewFile','VimEnter' },
+    opts = {}
   },
-  { 
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local cmp = require('cmp')
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-          ['<CR>'] = cmp.mapping.confirm({select = true}),
-          ['<C-Space>'] = cmp.mapping.complete(),
-        }),
-        sources = cmp.config.sources({
-          { name='nvim_lsp' }, --cmp-nvim-lsp
-          { name='luasnip' },
-        }, { {name='buffer'} })
-      })
-    end,
-  }
+  {
+    -- more docs: https://cmp.saghen.dev/
+    'saghen/blink.cmp',
+    -- dependencies = { 'rafamadriz/friendly-snippets' },
+    version = '1.*',
+    event = { 'BufReadPost','BufNewFile' },
+    opts = {},
+  },
 }
 require("lazy").setup({
   spec = lazyPluginSpec,
   --checker = { enabled = true },
 })
+--- lazy.nvim config end
+
+
+
+
