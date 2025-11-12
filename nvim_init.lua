@@ -1,6 +1,9 @@
 -- windows: $env:LOCALAPPDATA\nvim\init.lua
 -- macOS: $HOME/.config/nvim/init.lua
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
@@ -17,9 +20,7 @@ vim.opt.listchars = {
 vim.opt.inccommand = 'split'
 --vim.opt.lazyredraw = true
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
+-- key mappings
 vim.keymap.set('n', '<leader>w', function()
   if vim.bo.modified then
     vim.cmd('w')
@@ -43,20 +44,42 @@ end
 
 
 -- lsp
-vim.lsp.config['lua_ls'] = {
+vim.lsp.config("lua_ls", {
   -- :MasonInatll lua-language-server
-  cmd = { 'lua-language-server' },
-  filetypes = { 'lua' },
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
   -- settings = {
   --   diagnostics = {
-  --     globals = { 'vim' }
+  --     globals = { "vim" }
   --   },
   --   runtime = {
   --     version = 'LuaJIT',
   --   },
   -- },
-}
-vim.lsp.enable('lua_ls')
+})
+vim.lsp.enable("lua_ls")
+
+vim.lsp.config("omnisharp", {
+  cmd = {
+    vim.fn.executable('OmniSharp') == 1 and 'OmniSharp' or 'omnisharp',
+    '-z', -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
+    '--hostPID',
+    tostring(vim.fn.getpid()),
+    --'DotNet:enablePackageRestore=false',
+    '--encoding',
+    'utf-8',
+    '--languageserver',
+  },
+  filetypes = { 'cs', 'vb' },
+  root_markers = { '.git', '.sln' }
+})
+vim.lsp.enable("omnisharp")
+
+-- vim.lsp.config("csharp_ls", {
+--   cmd = {"csharp-ls"},
+--   filetypes = {"cs"},
+-- })
+-- vim.lsp.enable("csharp_ls")
 
 
 -- Bootstrap lazy.nvim
@@ -191,8 +214,8 @@ local lazyPluginSpec = {
     "nvim-treesitter/nvim-treesitter", branch = "main",
     lazy = false, build = ":TSUpdate",
     opts = {
-      -- ensure_installed = {"c","cpp","lua","bash","markdown"},
-      -- highlight = { enable = true },
+      ensure_installed = {"c","cpp","c_sharp","lua","bash","markdown"},
+      highlight = { enable = true },
     }
   },
   -- dev env pkg manager
