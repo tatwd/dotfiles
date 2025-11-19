@@ -43,45 +43,6 @@ if vim.fn.has('win32') == 1 then
 end
 
 
--- lsp
-vim.lsp.config("lua_ls", {
-  -- :MasonInatll lua-language-server
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  -- settings = {
-  --   diagnostics = {
-  --     globals = { "vim" }
-  --   },
-  --   runtime = {
-  --     version = 'LuaJIT',
-  --   },
-  -- },
-})
-vim.lsp.enable("lua_ls")
-
-vim.lsp.config("omnisharp", {
-  cmd = {
-    vim.fn.executable('OmniSharp') == 1 and 'OmniSharp' or 'omnisharp',
-    '-z', -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
-    '--hostPID',
-    tostring(vim.fn.getpid()),
-    --'DotNet:enablePackageRestore=false',
-    '--encoding',
-    'utf-8',
-    '--languageserver',
-  },
-  filetypes = { 'cs', 'vb' },
-  root_markers = { '.git', '.sln' }
-})
-vim.lsp.enable("omnisharp")
-
--- vim.lsp.config("csharp_ls", {
---   cmd = {"csharp-ls"},
---   filetypes = {"cs"},
--- })
--- vim.lsp.enable("csharp_ls")
-
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -122,9 +83,9 @@ local lazyPluginSpec = {
   { "tpope/vim-surround" },
   { "tpope/vim-repeat" },
   -- { "tpope/vim-fugitive" },
-  { 
-    "catppuccin/nvim", 
-    name = "catppuccin", 
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     opts = {
       flavour = "mocha",
@@ -137,7 +98,7 @@ local lazyPluginSpec = {
   -- { "nvim-tree/nvim-web-devicons", lazy = true },
   -- { "nvim-tree/nvim-tree.lua", opts = {} },
   { "nvim-mini/mini.icons", opts = {}, lazy = true },
-  { 
+  {
     "stevearc/oil.nvim",
     lazy = false,
     keys = {
@@ -147,8 +108,8 @@ local lazyPluginSpec = {
       default_file_explorer = true,
     },
   },
-  { 
-    "nvim-lualine/lualine.nvim", 
+  {
+    "nvim-lualine/lualine.nvim",
     opts = {
       options = {
         theme = "catppuccin",
@@ -177,7 +138,7 @@ local lazyPluginSpec = {
               CACHES.lualine_dt_fmt = fmtH
               return fmtH
             end
-          } 
+          }
         },
       },
     }
@@ -214,15 +175,9 @@ local lazyPluginSpec = {
     "nvim-treesitter/nvim-treesitter", branch = "main",
     lazy = false, build = ":TSUpdate",
     opts = {
-      ensure_installed = {"c","cpp","c_sharp","lua","bash","markdown"},
+      ensure_installed = {"c","cpp","c_sharp","lua","bash","markdown","http"},
       highlight = { enable = true },
     }
-  },
-  -- dev env pkg manager
-  {
-    "mason-org/mason.nvim", 
-    event = { 'BufReadPost','BufNewFile','VimEnter' },
-    opts = {}
   },
   {
     -- more docs: https://cmp.saghen.dev/
@@ -231,7 +186,45 @@ local lazyPluginSpec = {
     version = '1.*',
     event = { 'BufReadPost','BufNewFile' },
     opts = {},
+  },  -- dev env pkg manager
+  {
+    "mason-org/mason.nvim",
+    event = { 'BufReadPost','BufNewFile','VimEnter' },
+    opts = {}
   },
+  -- {
+  --   "rest-nvim/rest.nvim",
+  -- }
+  -- {
+    -- "mistweaverco/kulala.nvim",
+   -- ft = { "http", "rest" },
+    -- keys = {
+    --   { "<leader>Rs", desc = "Send request" },
+    --   { "<leader>Ra", desc = "Send all requests" },
+    --   { "<leader>Rb", desc = "Open scratchpad" },
+    -- },
+    -- opts = {
+    --   -- your configuration comes here
+    --   global_keymaps = false,
+    --   global_keymaps_prefix = "<leader>R",
+    --   kulala_keymaps_prefix = "",
+    -- },
+--    config = function ()
+--      require("kulala").setup({
+--        -- 禁用 treesitter 如果还有问题
+--        -- treesitter = false,
+--      })
+--     vim.api.nvim_create_autocmd("FileType", {
+--       pattern = "http",
+--       callback = function()
+--         -- 可选：禁用 treesitter 对于 http 文件
+--         if vim.treesitter then
+--           vim.treesitter.stop()
+--         end
+--       end,
+--     })
+--    end
+  -- },
 }
 require("lazy").setup({
   spec = lazyPluginSpec,
@@ -239,6 +232,73 @@ require("lazy").setup({
 })
 --- lazy.nvim config end
 
+-- vim.filetype.add({
+--   extension = {
+--     ['http'] = 'http',
+--   },
+-- })
 
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "http",
+--   callback = function()
+--     print("hello world")
+--     vim.treesitter.stop()
+--   end,
+-- })
+
+-- lsp
+vim.lsp.config("lua_ls", {
+  -- :MasonInatll lua-language-server
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
+  settings = {
+    Lua = {
+      -- runtime = {
+      --   version = "LuaJIT",
+      -- },
+      diagnostics = {
+        globals = { "vim", "require" }
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+    },
+  },
+})
+vim.lsp.enable("lua_ls")
+
+--vim.lsp.config("omnisharp", {
+--  cmd = {
+--    vim.fn.executable('OmniSharp') == 1 and 'OmniSharp' or 'omnisharp',
+--    '-z', -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
+--    '--hostPID',
+--    tostring(vim.fn.getpid()),
+--    --'DotNet:enablePackageRestore=false',
+--    '--encoding',
+--    'utf-8',
+--    '--languageserver',
+--  },
+--  filetypes = { 'cs', 'vb' },
+--  root_markers = { '.git', '.sln' }
+--})
+--vim.lsp.enable("omnisharp")
+
+-- vim.lsp.config("csharp_ls", {
+--   cmd = {"csharp-ls"},
+--   filetypes = {"cs"},
+-- })
+-- vim.lsp.enable("csharp_ls")
+
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   callback = function(ev)
+--     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+--     if client:supports_method('textDocument/completion') then
+--       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+--     end
+--   end,
+-- })
+
+-- vim.opt.completeopt = "menuone,noselect,noinsert"
 
 
