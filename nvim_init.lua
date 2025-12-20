@@ -192,6 +192,11 @@ local lazyPluginSpec = {
     event = { 'BufReadPost','BufNewFile','VimEnter' },
     opts = {}
   },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    -- opts = { preview = { enable= false } }
+  }
   -- {
   --   "rest-nvim/rest.nvim",
   -- }
