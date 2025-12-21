@@ -44,7 +44,7 @@ config.command_palette_bg_color = '#1e2129'
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
-  { key = '|', mods = 'LEADER', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = '=', mods = 'LEADER', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
   { key = '-', mods = 'LEADER', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'z', mods = 'LEADER', action = wezterm.action.TogglePaneZoomState },
 --  { key = 'h', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
@@ -55,6 +55,7 @@ config.keys = {
   { key = '[', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
   { key = '?', mods = 'LEADER', action = wezterm.action.ShowLauncher },
 }
+-- config.debug_key_events = true
 
 
 if is_windows then
