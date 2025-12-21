@@ -1,0 +1,27 @@
+
+https://code.claude.com/docs/en/setup
+
+// addition deps
+sudo dnf install ripgrep
+
+// setup proxy in cn
+// clash enable local proxy
+// window add net firewall rule to allow tcp 7897
+WINDOWS_IP=$(ip route | grep default | awk '{print $3}')
+export http_proxy="http://${WINDOWS_IP}:7897"
+export https_proxy="http://${WINDOWS_IP}:7897"
+
+
+// use native install
+curl -fsSL https://claude.ai/install.sh | bash
+
+
+// link window's claude config files
+ln -s /mnt/c/Users/jincl/.claude.json ~/.claude.json
+ln -s /mnt/c/Users/jincl/.claude/settings.json ~/.claude/settings.json
+
+
+// Uninstall 
+rm -f ~/.local/bin/claude
+rm -rf ~/.claude-code
+
