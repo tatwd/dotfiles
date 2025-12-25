@@ -24,7 +24,7 @@
 ;;hide window title bar
 ;;(setq default-frame-alist '((undecorated . t)))
 
-(setq initial-frame-alist '((width . 80) (height . 30)))
+;;(setq initial-frame-alist '((width . 80) (height . 30)))
 
 
 ;; show relative line numbers
