@@ -312,12 +312,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --     if client:supports_method('textDocument/completion') then
 --       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 --     end
-    
+
     local env_buf = ev.buf
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declar.', buffer = env_buf })
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Goto def.', buffer = env_buf })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declaration', buffer = env_buf })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Goto definition', buffer = env_buf })
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show symbol', buffer = env_buf })
-    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { desc = 'Goto impl.', buffer = env_buf })
+    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { desc = 'Goto implementation', buffer = env_buf })
 
    end,
  })
