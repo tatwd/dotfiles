@@ -101,11 +101,13 @@ local lazyPluginSpec = {
   {
     "stevearc/oil.nvim",
     lazy = false,
-    keys = {
-      { '-', '<CMD>Oil<CR>', 'Open parent directory' }
-    },
+    ---@module 'oil'
+    ---@type oil.SetupOpts
     opts = {
       default_file_explorer = true,
+      view_options = {
+        show_hidden = true,
+      }
     },
   },
   {
@@ -192,6 +194,12 @@ local lazyPluginSpec = {
     event = { 'BufReadPost','BufNewFile','VimEnter' },
     opts = {}
   },
+  -- {
+  --   "mason-org/mason-lspconfig.nvim",
+  --   opts = {
+  --       ensure_installed = { "lua_ls" },
+  --   }
+  -- },
   {
     "OXY2DEV/markview.nvim",
     lazy = false,
