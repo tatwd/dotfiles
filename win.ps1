@@ -59,7 +59,7 @@ scoop update
 
 @(
     @{name="dorado"; url="https://github.com/chawyehsu/dorado.git"}
-    # ,@{name="scoopet"; url="https://github.com/ivaquero/scoopet.git"}
+    ,@{name="scoopet"; url="https://github.com/ivaquero/scoopet.git"}
     # ,@{name="anderlli0053_DEV-tools"; url="https://github.com/anderlli0053/DEV-tools.git"},
 ) | ForEach-Object {
     scoop bucket add $_.name $_.url
@@ -236,38 +236,39 @@ if ($apps.Contains("python")) {
     $config_files.Add(@{url="$my_dotfiles_prefix/pip.conf"; dist="$HOME/pip/pip.ini"})
 }
 
-foreach ($item in $config_files) {
-    $url = $item.url
-    $dist = $item.dist
+# foreach ($item in $config_files) {
+#     $url = $item.url
+#     $dist = $item.dist
 
-    Write-Output "Download $url -> $dist"
-    download -url $url -dist $dist
-}
+#     Write-Output "Download $url -> $dist"
+#     download -url $url -dist $dist
+# }
 
 
-$is_pwsh = $PSEdition -eq "Core"
-$profile_dir = [System.IO.Path]::GetDirectoryName($PROFILE)
-$user_doc_dir = [System.IO.Path]::GetDirectoryName($profile_dir)
+# $is_pwsh = $PSEdition -eq "Core"
+# $profile_dir = [System.IO.Path]::GetDirectoryName($PROFILE)
+# $user_doc_dir = [System.IO.Path]::GetDirectoryName($profile_dir)
 
-if ($is_pwsh) {
-    New-Item -ItemType Junction -Path "$user_doc_dir/WindowsPowerShell" -Target "$profile_dir"
-} else {
-    New-Item -ItemType Junction -Path "$user_doc_dir/PowerShell" -Target "$profile_dir" 
-}
+# if ($is_pwsh) {
+#     New-Item -ItemType Junction -Path "$user_doc_dir/WindowsPowerShell" -Target "$profile_dir"
+# } else {
+#     New-Item -ItemType Junction -Path "$user_doc_dir/PowerShell" -Target "$profile_dir" 
+# }
 
-# vscode powershell extension profile
-sudo New-Item -ItemType SymbolicLink -Path "$profile_dir/Microsoft.VSCode_profile.ps1" -Target "$PROFILE"
+# # vscode powershell extension profile
+# sudo New-Item -ItemType SymbolicLink -Path "$profile_dir/Microsoft.VSCode_profile.ps1" -Target "$PROFILE"
 
 
 # 下载目录
 $downloadDir = "$HOME/Downloads"
 
 # Download & Install vs2022
-$vsVersion = "VS2022"
-$sku = "community"
-$downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
-$vsSetupExe = "$downloadDir/vsSetup.exe"
-download -url $downloadVSLink -dist $vsSetupExe 
+# $vsVersion = "VS2022"
+# $sku = "community"
+# $downloadVSLink = "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=$sku&channel=Release&version=$vsVersion&source=powershell"
+# $vsSetupExe = "$downloadDir/vsSetup.exe"
+# download -url $downloadVSLink -dist $vsSetupExe 
+
 # 立即执行安装 or not
 # Invoke-Item $outSetupExe 
 
@@ -279,4 +280,4 @@ download -url $downloadVSLink -dist $vsSetupExe
 # download -url $ssmsDownloadLink -dist $ssmsSetupExe
 
 # 打开下载目录
-Invoke-Item $downloadDir 
+# Invoke-Item $downloadDir 
