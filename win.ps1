@@ -81,13 +81,15 @@ $gloabal_apps = @(
 $apps = @(
     # "7zip", # main
     # "sudo", # main latest window11 default has sudo
-    #,"pwsh" #main it's coress-platform instead of windows powershell
-    "scoop-completion" #extras autocomplete in powershell, enable in $PROFILE
-    ,"starship", # main
+    "pwsh", #main it's coress-platform instead of windows powershell
+    "wezterm-nightly",
+    "scoop-completion", #extras autocomplete in powershell, enable in $PROFILE
+    "starship", # main
     # "figlet", # main
     # "pshazz", # main
     # "git", # main
     # ,"vim" #main
+    "neovim", #main
     # ,"openssh" #main
     "notepadplusplus", #extras
     # "typora", #extras
@@ -96,7 +98,7 @@ $apps = @(
     "vscode", # extras
     #"windows-terminal", # extras
     "powertoys", #extras
-    "googlechrome", # extras
+    # "googlechrome", # extras
     "chromium", # extras
     #"firefox" # extras
     # "firefox-developer", # versions
@@ -113,10 +115,11 @@ $apps = @(
     # "dotnet-sdk-lts", # versions
     # "dotnet2-sdk", # versions
     # "dotnet3-sdk", # versions
-    #"nodejs-lts", # main
+    "nodejs-lts", # main
     # "rustup", #main
     # "go", #main
     # ,"python" #main
+    "uv"
 
     # ,"vlc" #extras
     # ,"dbeaver" #extras
@@ -143,15 +146,19 @@ $apps = @(
     ,"openwithplusplus" #extras
 
     #,"thunderbird" #extras email client
-    ,"sql-server-management-studio-np" #nonportable
+    # ,"sql-server-management-studio-np" #nonportable
     #,"tectonic" #main texlive wrapper
     # ,"vcpkg"
 
     # ,"trafficmonitor"
     #,"miller"
     #,"hostctl"
-    #,"fd"
-
+    ,"fd"
+    ,"ripgrep"
+    # ,"bat"
+    ,"fzf"
+    ,"jq"
+    ,"mitmproxy"
 
     # ,"clash-verge" #dorado
     # ,"dingtalk" #dorado
