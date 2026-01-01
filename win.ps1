@@ -23,7 +23,7 @@
 # scoop config proxy default # system proxy settings
 # scoop config rm proxy
 
-scoop install 7zip git
+scoop install 7zip git aria2
 scoop update
 # scoop checkup
 # scoop cleanup # clean old version apps
