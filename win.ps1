@@ -172,7 +172,8 @@ if ($apps.Contains("rustup")) {
 # Write-Output $apps.length
 
 $gloabal_apps | ForEach-Object {
-    scoop install -g $_
+    # must enabled sudo in window developer setting
+    sudo scoop install -g $_
 }
 
 $apps | ForEach-Object {
