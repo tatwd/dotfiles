@@ -34,7 +34,7 @@ function get-process-for-port($port) {
 }
 
 function goworks {
-  set-location 'd:/works'
+  set-location "$HOME/works"
 }
 
 function psfd($v) {
@@ -137,6 +137,8 @@ function newpass {
 #Set-Prompt
 #Set-Theme Agnoster
 
+$env:SCOOP="$HOME\scoop"
+
 if (Test-Command podman) {
   set-alias docker podman
 }
@@ -178,5 +180,7 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 # 关闭 dotnet-cli 遥测
 $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-$env:OLLAMA_MODELS="D:\ollama-models"
+#$env:OLLAMA_MODELS="D:\ollama-models"
 #$env:OLLAMA_ORIGINS="https://ollama-ui.github.io"
+
+
