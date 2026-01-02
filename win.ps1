@@ -18,13 +18,17 @@
 # Uninstall scoop:
 #   scoop uninstall scoop
 
+$DOTFILES_DIR="$HOME\tatwd\dotfiles"
+$SCOOP_DIR="$HOME\scoop"
+#$my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
+
 # scoop config proxy 127.0.0.1:7890
 # scoop config proxy none # 直连
 # scoop config proxy default # system proxy settings
 # scoop config rm proxy
 
-scoop install 7zip git aria2
-scoop update
+#scoop install 7zip git aria2
+#scoop update
 # scoop checkup
 # scoop cleanup # clean old version apps
 
@@ -45,7 +49,7 @@ scoop update
     "versions",
     "nirsoft",
     "nonportable",
-    # "java",
+# "java",
     "sysinternals",
     "games"
 ) | ForEach-Object {
@@ -209,41 +213,63 @@ function download {
 
 # my dotfiles repository raw url prefix
 # $my_dotfiles_prefix = "https://cdn.jsdelivr.net/gh/tatwd/dotfiles@master"
-$my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
+#$my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
 
+$my_ps_profile="$DOTFILES_DIR/Microsoft.PowerShell_profile.ps1"
+$user_doc_dir="$HOME\Documents"
+$pwsh_profile="$user_doc_dir\Powershell\Microsoft.PowerShell_profile.ps1"
+$powershell_profile="$user_doc_dir\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+$vscode_powershell_profile="$user_doc_dir\PowerShell\Microsoft.VSCode_profile.ps1"
 
 $config_files = [System.Collections.ArrayList]@(
+    @{url="$DOTFILES_DIR/wezterm.lua"; dist="$HOME/.wezterm.lua"},
+    @{url="$DOTFILES_DIR/nvim_init.lua"; dist="$env:LOCALAPPDATA/nvim/init.lua"},
     # set powershell profile
-    @{url="$my_dotfiles_prefix/Microsoft.PowerShell_profile.ps1"; dist="$PROFILE"}
+    @{url=$my_ps_profile; dist="$pwsh_profile"},
+    @{url=$my_ps_profile; dist="$powershell_profile"}
     # maven settings
     # ,@{url="$my_dotfiles_prefix/.m2.settings.xml"; dist="$HOME/.m2/settings.xml"}
 )
 
+if ($apps.Contains("vscode")) {
+    $config_files.Add(@{url=$my_ps_profile; dist="$vscode_powershell_profile"})
+}
+
 # set starship config
 if ($apps.Contains("starship")) {
-    $config_files.Add(@{url="$my_dotfiles_prefix/starship.toml"; dist="$HOME/.config/starship.toml"})
+    $config_files.Add(@{url="$DOTFILES_DIR/starship.toml"; dist="$HOME/.config/starship.toml"})
 }
 
 if ($apps.Contains("rustup")) {
     # $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
-    $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$env:SCOOP/persist/rustup/.cargo/config"})
+    $config_files.Add(@{url="$DOTFILES_DIR/.cargo_config"; dist="$SCOOP_DIR/persist/rustup/.cargo/config"})
 }
 
 if ($apps.Contains("docker")) {
-    $config_files.Add(@{url="$my_dotfiles_prefix/.docker/daemon.json"; dist="$HOME/.docker/daemon.toml"})
+    $config_files.Add(@{url="$DOTFILES_DIR/.docker/daemon.json"; dist="$HOME/.docker/daemon.toml"})
 }
 
 if ($apps.Contains("python")) {
-    $config_files.Add(@{url="$my_dotfiles_prefix/pip.conf"; dist="$HOME/pip/pip.ini"})
+    $config_files.Add(@{url="$DOTFILES_DIR/pip.conf"; dist="$HOME/pip/pip.ini"})
 }
 
-# foreach ($item in $config_files) {
-#     $url = $item.url
-#     $dist = $item.dist
+
+foreach ($item in $config_files) {
+    $url = $item.url
+    $dist = $item.dist
 
 #     Write-Output "Download $url -> $dist"
 #     download -url $url -dist $dist
-# }
+#
+
+    $distDir = [System.IO.Path]::GetDirectoryName($dist)
+    if (!(Test-Path -LiteralPath $distDir)) {
+        New-Item -Path $distDir -ItemType Directory
+    }
+
+    Write-Output "Create SymbolicLink $dist -> $url"
+    New-Item -ItemType SymbolicLink -Path $dist  -Target $url
+}
 
 
 # $is_pwsh = $PSEdition -eq "Core"
