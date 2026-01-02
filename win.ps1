@@ -83,16 +83,12 @@ $gloabal_apps = @(
 )
 
 $apps = @(
-    # "7zip", # main
-    # "sudo", # main latest window11 default has sudo
     "pwsh", #main it's coress-platform instead of windows powershell
     "wezterm-nightly",
     "scoop-completion", #extras autocomplete in powershell, enable in $PROFILE
     "starship", # main
     # "figlet", # main
     # "pshazz", # main
-    # "git", # main
-    # ,"vim" #main
     "neovim", #main
     # ,"openssh" #main
     "notepadplusplus", #extras
@@ -113,7 +109,7 @@ $apps = @(
     "rider", #extras
     # "datagrip", #extras
     # "docker", #main
-    # "podman", #main
+    "podman", #main
 
     # "dotnet-sdk", # main
     # "dotnet-sdk-lts", # versions
@@ -139,11 +135,13 @@ $apps = @(
     # ,"spacesniffer" #extras
     #,"dismplusplus" #extras
     # ,"draw.io" #extras
-    #,"postman" #extras
+    ,"postman" #extras
 
     # ,"pstools" #sysinternals
     # ,"tcpview" #sysinternals
     # ."procdump" #sysinternals
+    ,"ilspy"
+    ,"perfview"
     ,"sysinternals-suite" #sysinternals
     #,"CurrPorts" #nirsoft
     #,"SmartSniff" #nirsoft
@@ -162,8 +160,10 @@ $apps = @(
     # ,"bat"
     ,"fzf"
     ,"jq"
+    ,"cc-switch"
     ,"mitmproxy"
 
+    # ,"clash-verge-rev" #dorado
     # ,"clash-verge" #dorado
     # ,"dingtalk" #dorado
     # ,"netneteasemusic" #dorado
@@ -187,33 +187,29 @@ $apps | ForEach-Object {
 #switch version of your app
 #scoop reset version_you_selected
 
-function download {
-    param(
-        [string]$url,
-        [string]$dist
-    )
+# function download {
+#     param(
+#         [string]$url,
+#         [string]$dist
+#     )
 
-    $dist_full_path = [System.IO.Path]::GetFullPath($dist)
-    $dist_full_dir = [System.IO.Path]::GetDirectoryName($dist_full_path)
+#     $dist_full_path = [System.IO.Path]::GetFullPath($dist)
+#     $dist_full_dir = [System.IO.Path]::GetDirectoryName($dist_full_path)
 
-    if (!(Test-Path -LiteralPath $dist_full_dir)) {
-        New-Item -Path $dist_full_dir -ItemType Directory
-    }
+#     if (!(Test-Path -LiteralPath $dist_full_dir)) {
+#         New-Item -Path $dist_full_dir -ItemType Directory
+#     }
 
-    $tmp = New-TemporaryFile
+#     $tmp = New-TemporaryFile
 
-    try {
-        Invoke-WebRequest -Uri $url -OutFile $tmp
-        Copy-Item $tmp $dist_full_path
-    } finally {
-        Remove-Item $tmp
-        # Write-Output "remove Temporary File"
-    }
-}
-
-# my dotfiles repository raw url prefix
-# $my_dotfiles_prefix = "https://cdn.jsdelivr.net/gh/tatwd/dotfiles@master"
-#$my_dotfiles_prefix = "https://raw.githubusercontent.com/tatwd/dotfiles/master"
+#     try {
+#         Invoke-WebRequest -Uri $url -OutFile $tmp
+#         Copy-Item $tmp $dist_full_path
+#     } finally {
+#         Remove-Item $tmp
+#         # Write-Output "remove Temporary File"
+#     }
+# }
 
 $my_ps_profile="$DOTFILES_DIR/Microsoft.PowerShell_profile.ps1"
 $user_doc_dir="$HOME\Documents"
@@ -222,8 +218,8 @@ $powershell_profile="$user_doc_dir\WindowsPowerShell\Microsoft.PowerShell_profil
 $vscode_powershell_profile="$user_doc_dir\PowerShell\Microsoft.VSCode_profile.ps1"
 
 $config_files = [System.Collections.ArrayList]@(
-    @{url="$DOTFILES_DIR/wezterm.lua"; dist="$HOME/.wezterm.lua"},
-    @{url="$DOTFILES_DIR/nvim_init.lua"; dist="$env:LOCALAPPDATA/nvim/init.lua"},
+    @{url="$DOTFILES_DIR\wezterm.lua"; dist="$HOME\.wezterm.lua"},
+    @{url="$DOTFILES_DIR\nvim_init.lua"; dist="$env:LOCALAPPDATA\nvim\init.lua"},
     # set powershell profile
     @{url=$my_ps_profile; dist="$pwsh_profile"},
     @{url=$my_ps_profile; dist="$powershell_profile"}
@@ -237,20 +233,20 @@ if ($apps.Contains("vscode")) {
 
 # set starship config
 if ($apps.Contains("starship")) {
-    $config_files.Add(@{url="$DOTFILES_DIR/starship.toml"; dist="$HOME/.config/starship.toml"})
+    $config_files.Add(@{url="$DOTFILES_DIR\starship.toml"; dist="$HOME\.config\starship.toml"})
 }
 
 if ($apps.Contains("rustup")) {
     # $config_files.Add(@{url="$my_dotfiles_prefix/.cargo_config"; dist="$HOME/.cargo/config"})
-    $config_files.Add(@{url="$DOTFILES_DIR/.cargo_config"; dist="$SCOOP_DIR/persist/rustup/.cargo/config"})
+    $config_files.Add(@{url="$DOTFILES_DIR\.cargo_config"; dist="$SCOOP_DIR\persist\rustup\.cargo\config"})
 }
 
-if ($apps.Contains("docker")) {
-    $config_files.Add(@{url="$DOTFILES_DIR/.docker/daemon.json"; dist="$HOME/.docker/daemon.toml"})
-}
+# if ($apps.Contains("docker")) {
+#     $config_files.Add(@{url="$DOTFILES_DIR\.docker\daemon.json"; dist="$HOME/.docker/daemon.toml"})
+# }
 
 if ($apps.Contains("python")) {
-    $config_files.Add(@{url="$DOTFILES_DIR/pip.conf"; dist="$HOME/pip/pip.ini"})
+    $config_files.Add(@{url="$DOTFILES_DIR\pip.conf"; dist="$HOME\pip\pip.ini"})
 }
 
 
@@ -260,7 +256,11 @@ foreach ($item in $config_files) {
 
 #     Write-Output "Download $url -> $dist"
 #     download -url $url -dist $dist
-#
+
+    if (Test-Path $dist) {
+        Write-Output "Already exists $dist"
+        continue
+    }
 
     $distDir = [System.IO.Path]::GetDirectoryName($dist)
     if (!(Test-Path -LiteralPath $distDir)) {
@@ -271,23 +271,8 @@ foreach ($item in $config_files) {
     New-Item -ItemType SymbolicLink -Path $dist  -Target $url
 }
 
-
-# $is_pwsh = $PSEdition -eq "Core"
-# $profile_dir = [System.IO.Path]::GetDirectoryName($PROFILE)
-# $user_doc_dir = [System.IO.Path]::GetDirectoryName($profile_dir)
-
-# if ($is_pwsh) {
-#     New-Item -ItemType Junction -Path "$user_doc_dir/WindowsPowerShell" -Target "$profile_dir"
-# } else {
-#     New-Item -ItemType Junction -Path "$user_doc_dir/PowerShell" -Target "$profile_dir" 
-# }
-
-# # vscode powershell extension profile
-# sudo New-Item -ItemType SymbolicLink -Path "$profile_dir/Microsoft.VSCode_profile.ps1" -Target "$PROFILE"
-
-
 # 下载目录
-$downloadDir = "$HOME/Downloads"
+# $downloadDir = "$HOME/Downloads"
 
 # Download & Install vs2022
 # $vsVersion = "VS2022"
