@@ -1,5 +1,16 @@
+# ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa_github -C "tatwdo@gmail.com"
 
+# Personal GitHub account
 Host github.com
-	HostName github.com
-	IdentityFile ~/.ssh/id_rsa
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_github  #replace
+    IdentitiesOnly yes
+
+# Works Account
+#Host <works_host>
+#    HostName <works_host>
+#    User git
+#    IdentityFile ~/.ssh/<works_id_key_file>
+#    IdentitiesOnly yes
 
