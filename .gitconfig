@@ -1,8 +1,14 @@
 [init]
     defaultBranch = main
 
+[core]
+    autocrlf = false
+
 # [includeIf "gitdir:D:/works/"]
 #     path = ~/.gitconfig-works
 
 [includeIf "gitdir:D:/tatwd/"]
     path = ~/.gitconfig-github
+
+[alias]
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
