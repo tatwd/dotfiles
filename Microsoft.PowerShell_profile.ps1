@@ -183,4 +183,6 @@ $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
 #$env:OLLAMA_MODELS="D:\ollama-models"
 #$env:OLLAMA_ORIGINS="https://ollama-ui.github.io"
 
-
+$env:API_TIMEOUT_MS=600000
+$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+$env:CLAUDE_CODE_GIT_BASH_PATH="$env:SCOOP\apps\git\current\bin\bash.exe"
