@@ -60,7 +60,7 @@ config.keys = {
 
 if is_windows then
   config.default_prog = { 'pwsh.exe', '-NoLogo' }
-  config.default_cwd = "D:\\works"
+  -- config.default_cwd = "D:\\works"
 end
 
 return config
