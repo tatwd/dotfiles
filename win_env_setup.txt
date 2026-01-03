@@ -1,0 +1,4 @@
+$env:_NT_SYMBOL_PATH="D:\cache\symbols"
+
+$env:SSLKEYLOGFILE="D:\cache\tls.log"
+
