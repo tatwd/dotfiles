@@ -149,17 +149,18 @@ $apps = @(
 
     #,"thunderbird" #extras email client
     # ,"sql-server-management-studio-np" #nonportable
-    #,"tectonic" #main texlive wrapper
+    ,"tectonic" #main texlive wrapper
     # ,"vcpkg"
-
+    
     # ,"trafficmonitor"
     #,"miller"
     #,"hostctl"
     ,"fd"
     ,"ripgrep"
-    # ,"bat"
+    ,"bat"
     ,"fzf"
     ,"jq"
+    
     ,"cc-switch"
     ,"mitmproxy"
 
@@ -168,6 +169,10 @@ $apps = @(
     # ,"dingtalk" #dorado
     # ,"netneteasemusic" #dorado
     #,"pwsafe"
+
+    #,"crystaldiskinfo"
+    #,"crystaldiskmark"
+    #,"cpu-z"
 )
 
 if ($apps.Contains("rustup")) {
@@ -178,7 +183,7 @@ if ($apps.Contains("rustup")) {
 
 $gloabal_apps | ForEach-Object {
     # must enabled sudo in window developer setting
-    sudo scoop install -g $_
+#    sudo scoop install -g $_
 }
 
 $apps | ForEach-Object {
@@ -248,6 +253,10 @@ if ($apps.Contains("rustup")) {
 
 if ($apps.Contains("python")) {
     $config_files.Add(@{url="$DOTFILES_DIR\pip.conf"; dist="$HOME\pip\pip.ini"})
+}
+
+if ($apps.Contains("uv")) {
+    $config_files.Add(@{url="$DOTFILES_DIR\uv.toml"; dist="$env:APPDATA\uv\uv.toml"})
 }
 
 
