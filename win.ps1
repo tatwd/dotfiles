@@ -163,10 +163,11 @@ $apps = @(
     ,"cc-switch"
     ,"mitmproxy"
 
-    # ,"clash-verge-rev" #dorado
+    # ,"clash-verge-rev"
     # ,"clash-verge" #dorado
     # ,"dingtalk" #dorado
     # ,"netneteasemusic" #dorado
+    #,"pwsafe"
 )
 
 if ($apps.Contains("rustup")) {
