@@ -180,7 +180,7 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 # 关闭 dotnet-cli 遥测
 $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-#$env:OLLAMA_MODELS="D:\ollama-models"
+$env:OLLAMA_MODELS="D:\cache\ollama-models"
 #$env:OLLAMA_ORIGINS="https://ollama-ui.github.io"
 
 $env:API_TIMEOUT_MS=600000
