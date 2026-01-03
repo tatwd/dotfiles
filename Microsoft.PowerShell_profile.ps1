@@ -34,7 +34,7 @@ function get-process-for-port($port) {
 }
 
 function goworks {
-  set-location "$HOME/works"
+  set-location "D:\works"
 }
 
 function psfd($v) {
@@ -145,6 +145,19 @@ if (Test-Command podman) {
 
 if (Test-Command starship) {
   Invoke-Expression (&starship init powershell)
+
+  #https://wezterm.org/shell-integration.html#osc-7-on-windows-with-powershell-with-starship
+  $prompt = ""
+  function Invoke-Starship-PreCommand {
+    $current_location = $executionContext.SessionState.Path.CurrentLocation
+    if ($current_location.Provider.Name -eq "FileSystem") {
+        $ansi_escape = [char]27
+        $provider_path = $current_location.ProviderPath -replace "\\", "/"
+        $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
+    }
+    $host.ui.Write($prompt)
+  }
+
 }
 
 if (Test-Command scoop.ps1) {
