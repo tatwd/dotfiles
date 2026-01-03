@@ -189,6 +189,7 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 #Set-PSReadlineKeyHandler -Key Ctrl+UpArrow -Function HistorySearchBackward
 #Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
+$env:EDITOR="nvim"
 
 # 关闭 dotnet-cli 遥测
 $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
