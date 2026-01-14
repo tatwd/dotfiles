@@ -41,6 +41,7 @@ config.command_palette_font = config.font
 -- config.command_palette_rows = 14
 config.command_palette_bg_color = '#1e2129'
 
+config.enable_kitty_keyboard = true
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
