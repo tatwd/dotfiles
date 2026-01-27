@@ -119,7 +119,8 @@ $apps = @(
     # "rustup", #main
     # "go", #main
     # ,"python" #main
-    "uv"
+    "uv",
+    "claude-code"
 
     # ,"vlc" #extras
     # ,"dbeaver" #extras

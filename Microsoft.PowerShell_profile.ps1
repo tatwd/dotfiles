@@ -176,6 +176,9 @@ if (Test-Command conda) {
   (& conda 'shell.powershell' 'hook') | Out-String | Invoke-Expression
 }
 
+$tfcli="C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\TF.exe"
+
+
 # PowerShell parameter completion shim for the dotnet CLI
 # from https://docs.microsoft.com/zh-cn/dotnet/core/tools/enable-tab-autocomplete?WT.mc_id=modinfra-35653-salean#powershell
 Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
