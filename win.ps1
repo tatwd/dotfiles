@@ -118,9 +118,9 @@ $apps = @(
     "nodejs-lts", # main
     # "rustup", #main
     # "go", #main
-    # ,"python" #main
-    "uv",
-    "claude-code"
+    "python", #main
+    "uv"
+    #,"claude-code"
 
     # ,"vlc" #extras
     # ,"dbeaver" #extras
