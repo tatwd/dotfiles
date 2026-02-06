@@ -117,7 +117,7 @@ $apps = @(
     # "dotnet3-sdk", # versions
     "nodejs-lts", # main
     # "rustup", #main
-    # "go", #main
+    "go", #main
     "python", #main
     "uv"
     #,"claude-code"
@@ -258,6 +258,10 @@ if ($apps.Contains("python")) {
 
 if ($apps.Contains("uv")) {
     $config_files.Add(@{url="$DOTFILES_DIR\uv.toml"; dist="$env:APPDATA\uv\uv.toml"})
+}
+
+if ($apps.Contains("go")) {
+    $config_files.Add(@{url="$DOTFILES_DIR\go_env"; dist="$env:APPDATA\go\env"})
 }
 
 

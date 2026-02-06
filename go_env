@@ -1,1 +1,3 @@
+GOCACHE=D:\cache\go-build
+GOMODCACHE=D:\cache\go-pkg-mod
 GOPROXY=https://goproxy.io,direct
