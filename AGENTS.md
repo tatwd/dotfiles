@@ -4,6 +4,9 @@
 ## Shell Env
 - You are running in Window 11 on WezTerm terminal, and use Git-Bash as shell
 - 执行 shell 脚本之前先阅读下脚本内容
+- 注意根据环境区分文件路径风格，举例：
+  * Git-Bash: `/d/works/`
+  * Windows: `D:\works\`
 
 # CRITICAL Tool Usage Rules CRITICAL
 - You MUST use `rg` instead of `grep`
