@@ -16,4 +16,5 @@
 - MUST use `fd` instead of `find`
 - MUST read every file you modify in full before editing.
 - DO NOT edit too much code lines that human cannot review.
+- Read json file use `jq`
 
