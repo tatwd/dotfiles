@@ -18,6 +18,7 @@ in
 #    unrar
     p7zip
 
+    uv
     go
     deno
     nodejs_22
@@ -25,12 +26,14 @@ in
 #    dotnet-sdk
 #    dotnet-runtime_8
 #    dotnet-sdk_8
+#    dotnet-sdk_9
     dotnet-sdk_9
     jdk8
     cmake
 #    clang-tools
     tectonic
 
+    neovim
     vscode
     google-chrome
     jetbrains.rider
@@ -42,7 +45,7 @@ in
 #    starship
     wezterm
 #    alacritty
-#    tmux
+    tmux
 #    zellij
 #    ghostty
 #    iterm2
@@ -51,6 +54,7 @@ in
 #    godot
     mitmproxy
 #    postman
+    atac
 
 # zsh plugins
 #    zsh-autosuggestions
@@ -70,13 +74,16 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     GOPROXY = "https://goproxy.io,direct";
-    DOTNET_ROOT = "${pkgs.dotnet-sdk_9}";
+    DOTNET_ROOT = "${pkgs.dotnet-sdk_9}/share/dotnet";
     JAVA_HOME = "${pkgs.jdk8}";
     HMNIX = "${gConfigDir}/home-manager/home.nix";
+    # ATAC_THEME = "${gDotfilesDir}/atac_theme.toml";
+    ATAC_KEY_BINDINGS = "${gDotfilesDir}/atac_keys.toml";
   };
 
   home.sessionPath = [
     "$HOME/.npm-global/bin"
+    "$HOME/.dotnet/tools"
   ];
 
   home.file = {
@@ -110,6 +117,8 @@ in
       hm = "home-manager";
       nix-clean = "nix-collect-garbage --delete-old";
       chrome = "google-chrome-stable";
+      vi = "nvim";
+      vim = "nvim";
     };
   };
 
@@ -154,12 +163,16 @@ in
     enableZshIntegration = true;
   };
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-  };
+  # programs.neovim = {
+  #   enable = true;
+  #   viAlias = true;
+  #   vimAlias = true;
+  # };
 
   programs.fd = { enable = true; };
+
+  programs.claude-code = {
+    enable = true;
+  };
 
 }
