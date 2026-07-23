@@ -171,6 +171,8 @@ local lazyPluginSpec = {
     config = function()
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+      vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Search buffers' })
+
     end
   },
   {
@@ -297,21 +299,28 @@ vim.lsp.enable("lua_ls")
 --})
 --vim.lsp.enable("omnisharp")
 
+-- :MasonInatll csharp-language-server
 -- vim.lsp.config("csharp_ls", {
 --   cmd = {"csharp-ls"},
---   filetypes = {"cs"},
--- })
--- vim.lsp.enable("csharp_ls")
+--    filetypes = {"cs"},
+--  })
+--  vim.lsp.enable("csharp_ls")
 
--- vim.api.nvim_create_autocmd('LspAttach', {
---   callback = function(ev)
+vim.api.nvim_create_autocmd('LspAttach', {
+   callback = function(ev)
 --     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 --     if client:supports_method('textDocument/completion') then
 --       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 --     end
---   end,
--- })
+
+    local env_buf = ev.buf
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declaration', buffer = env_buf })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Goto definition', buffer = env_buf })
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show symbol', buffer = env_buf })
+    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { desc = 'Goto implementation', buffer = env_buf })
+
+   end,
+ })
 
 -- vim.opt.completeopt = "menuone,noselect,noinsert"
-
 
