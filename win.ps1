@@ -165,6 +165,8 @@ $apps = @(
     ,"cc-switch"
     ,"mitmproxy"
 
+    #,"glab" #gitlab-cli
+
     # ,"clash-verge-rev"
     # ,"clash-verge" #dorado
     # ,"dingtalk" #dorado
