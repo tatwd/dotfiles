@@ -27,7 +27,7 @@ in
 #    dotnet-runtime_8
 #    dotnet-sdk_8
 #    dotnet-sdk_9
-    dotnet-sdk_9
+    dotnet-sdk_10
     jdk8
     cmake
 #    clang-tools
@@ -55,6 +55,7 @@ in
     mitmproxy
 #    postman
     atac
+    glab #gitlab-cli
 
 # zsh plugins
 #    zsh-autosuggestions
@@ -101,7 +102,10 @@ in
        prefix=${gHomeDir}/.npm-global
     '';
 
+# glab config file  source file need chmod to 600
+    ".config/glab-cli/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${gHomeDir}/works/glab-config.yml";
   };
+
 
   programs.home-manager.enable = true;
 
