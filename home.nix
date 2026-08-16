@@ -49,7 +49,7 @@ in
 #    zellij
 #    ghostty
 #    iterm2
-    ollama
+#    ollama
     podman
 #    godot
     mitmproxy
@@ -75,7 +75,7 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     GOPROXY = "https://goproxy.io,direct";
-    DOTNET_ROOT = "${pkgs.dotnet-sdk_9}/share/dotnet";
+    DOTNET_ROOT = "${pkgs.dotnet-sdk_10}/share/dotnet";
     JAVA_HOME = "${pkgs.jdk8}";
     HMNIX = "${gConfigDir}/home-manager/home.nix";
     # ATAC_THEME = "${gDotfilesDir}/atac_theme.toml";
@@ -175,8 +175,8 @@ in
 
   programs.fd = { enable = true; };
 
-  programs.claude-code = {
-    enable = true;
-  };
+  # programs.claude-code = {
+  #   enable = true;
+  # };
 
 }
