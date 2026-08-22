@@ -7,6 +7,8 @@ local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 
 local config = wezterm.config_builder()
 
+config.native_macos_fullscreen_mode = true
+
 config.initial_cols = 80
 config.initial_rows = 26
 
