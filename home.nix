@@ -8,6 +8,13 @@ let
   gDotfilesDir = "${gHomeDir}/tatwd/dotfiles";
 in
 {
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
+  nixpkgs.config.allowUnfree = true;
+
   home.username = gUsername;
   home.homeDirectory = gHomeDir;
   home.stateVersion = "25.05";
