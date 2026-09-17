@@ -30,7 +30,8 @@ function lspath {
 
 function get-process-for-port($port) {
   # `sudo` is installed by scoop
-  sudo Get-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess -IncludeUserName
+  # sudo Get-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess -IncludeUserName
+  Get-NetTCPConnection -LocalPort $port | ForEach-Object { Get-Process -Id $_.OwningProcess }
 }
 
 function goworks {

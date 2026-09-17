@@ -164,6 +164,7 @@ $apps = @(
     
     ,"cc-switch"
     ,"mitmproxy"
+    ,"mkcert"
 
     #,"glab" #gitlab-cli
 
