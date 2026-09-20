@@ -136,7 +136,8 @@ $apps = @(
     # ,"spacesniffer" #extras
     #,"dismplusplus" #extras
     # ,"draw.io" #extras
-    ,"postman" #extras
+    # ,"postman" #extras
+    ,"bruno" #extras
 
     # ,"pstools" #sysinternals
     # ,"tcpview" #sysinternals
@@ -162,7 +163,7 @@ $apps = @(
     ,"fzf"
     ,"jq"
     
-    ,"cc-switch"
+    # ,"cc-switch"
     ,"mitmproxy"
     ,"mkcert"
 
